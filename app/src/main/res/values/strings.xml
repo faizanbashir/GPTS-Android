@@ -1,8 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">Android</string>
+    <string name="app_name">God Power Turbo System</string>
+    <string name="gpts">God Power Turbo Systems</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <string name="phone">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="err_phone">Enter a Correct Phone Number</string>
+    <string name="err_email">Enter a Vaild Email Address</string>
+    <string name="err_password">Enter a Password</string>
+    <string name="err_name">Enter a Valid Name</string>
+    <string name="signup">SIGN UP</string>
+    <string name="signin">SIGN IN</string>
+    <string name="already_registered">Already Registered</string>
+    <string name="new_to_godpower">New To God Power?</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Sign Up.</string>
+    <string name="btn_link_to_login">Already registered! Login.</string>
+    <string name="btn_about">About Us</string>
+    <string name="btn_parts">Turbo Parts</string>
+    <string name="btn_contact">Contact Us</string>
+    <string name="btn_faq">FAQ</string>
+    <string name="btn_events">Events</string>
+    <string name="btn_hotproducts">Hot Products</string>
+    <string name="welcome">Welcome</string>
+    <string name="btn_logout">LOGOUT</string>
+    <string name="activity_login">Login</string>
+    <string name="activity_register">Register</string>
+    <string name="activity_main">Main</string>
+    <string name="activity_about">About Us</string>
+    <string name="activity_contact">Contact Us</string>
+    <string name="activity_partnumbers">Part Numbers</string>
+    <string name="activity_events">Events</string>
+    <string name="activity_hotproducts">Hot Products</string>
+    <string name="activity_faq">FAQ</string>
+    <string name="activity_logout">Logout</string>
+    <string name="name">Full Name</string>
 </resources>
