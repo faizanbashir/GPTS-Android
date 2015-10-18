@@ -50,7 +50,34 @@ public class Session {
         Log.d(TAG, "Log id: " + map.get(LOG_ID) + ", User: " + map.get(USER));
     }
 
+    public void putAll(){
+        Log.e(TAG, pref.getAll().toString());
+    }
+
+    public String getLogId(){
+        return pref.getString(LOG_ID, null);
+    }
+
     public boolean isLoggedIn(){
         return pref.getBoolean(KEY_IS_LOGGED_IN, false);
     }
+
+    public String getMobile(){
+        return pref.getString(MOBILE, null);
+    }
+
+    public String getName(){
+        return pref.getString(NAME, null);
+    }
+
+    public String getEmailAddr(){
+        return pref.getString(EMAIL, null);
+    }
+
+    public void logOut(){
+        editor.putBoolean(KEY_IS_LOGGED_IN, false);
+        editor.commit();
+        Log.e(TAG, "User Logged Out!");
+    }
+
 }

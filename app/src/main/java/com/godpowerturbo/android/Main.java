@@ -5,15 +5,18 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import api.Resource;
+import api.Session;
 
 public class Main extends ActionBarActivity {
     private static final String TAG = Main.class.getSimpleName();
@@ -26,8 +29,42 @@ public class Main extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate()");
+        Session session = new Session(mCtx);
+        Log.e(TAG, "LOG_ID: " + session.getLogId());
+        session.putAll();
         setUpActionBar();
         registerViews();
+    }
+
+    @Override
+    protected void onStart() {
+        Intent i = new Intent(Main.this, MyService.class);
+        startService(i);
+        super.onStart();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_welcome, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                break;
+            case R.id.menu_logout:
+                Intent i = new Intent(Main.this, Logout.class);
+                startActivity(i);
+                break;
+            case R.id.menu_exit:
+                stopService(new Intent(Main.this, MyService.class));
+                android.os.Process.killProcess(Resource.PID);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void registerViews(){
@@ -83,8 +120,13 @@ public class Main extends ActionBarActivity {
 
     private void setUpActionBar(){
         ActionBar ab = getSupportActionBar();
-        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Resource.BACKGROUND_DRAWABLE)));
         ab.setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor(Resource.STACKED_BACKGROUND)));
+        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Resource.BACKGROUND_DRAWABLE)));
     }
 
+    @Override
+    protected void onDestroy() {
+        stopService(new Intent(Main.this, MyService.class));
+        super.onDestroy();
+    }
 }

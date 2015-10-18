@@ -13,7 +13,7 @@
     <application
         android:name=".AppController"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/download"
         android:label="@string/gpts"
         android:theme="@style/AppTheme" >
         <activity
@@ -53,44 +53,66 @@
             android:label="@string/activity_about"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".Main">
+                <meta-data android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".Main"/>
         </activity>
         <activity android:name=".Contact"
             android:label="@string/activity_contact"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".Main">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main"/>
         </activity>
         <activity android:name=".Events"
             android:label="@string/activity_events"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".Main">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main"/>
         </activity>
         <activity android:name=".FAQ"
             android:label="@string/activity_faq"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".Main">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main"/>
         </activity>
         <activity android:name=".HotProducts"
             android:label="@string/activity_hotproducts"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".Main">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main"/>
         </activity>
         <activity android:name=".PartNumber"
             android:label="@string/activity_partnumbers"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".Main">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main"/>
         </activity>
         <activity android:name=".Logout"
             android:label="@string/activity_logout"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".Main">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main"/>
         </activity>
+        <service android:name=".MyService"/>
     </application>
 
 </manifest>

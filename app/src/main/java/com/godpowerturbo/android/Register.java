@@ -17,8 +17,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -42,7 +44,6 @@ public class Register extends Activity {
     private ProgressDialog dialog;
     private Vibrator vibrate;
     Context context = this;
-    private static final int VIBR_TIME = 200;
     private static final String TAG_SUCCESS = "Success";
     private static final String TAG_NAME = "name";
     private static final String TAG_MOBILE = "mobile";
@@ -149,6 +150,9 @@ public class Register extends Activity {
                 return params;
             }
         };
+        RetryPolicy policy = new DefaultRetryPolicy(Resource.SOCKET_TIMEOUT, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        strReq.setRetryPolicy(policy);
         MySingleton.getInstance(this).addToRequestQueue(strReq);
     }
 
@@ -172,7 +176,7 @@ public class Register extends Activity {
 
     private void vibrate(){
         if(vibrate.hasVibrator()){
-            vibrate.vibrate(VIBR_TIME);
+            vibrate.vibrate(Resource.VIBR_TIME);
         }
     }
 

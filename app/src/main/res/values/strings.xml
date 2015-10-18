@@ -37,5 +37,41 @@
     <string name="activity_hotproducts">Hot Products</string>
     <string name="activity_faq">FAQ</string>
     <string name="activity_logout">Logout</string>
+    <string name="menu_feedback">Feedback</string>
+    <string name="menu_logout">Logout</string>
+    <string name="menu_exit">Exit</string>
     <string name="name">Full Name</string>
+    <string name="gpts_email">godpower@godpowerturbo.com</string>
+    <string name="aboutText"><![CDATA[
+<p><b>God Power Turbo Systems</b><br/>
+<i>Version 1.0 Android</i></p>
+<p>In Year 2000  <b><quote>GOD POWER TURBO SYSTEMS</quote></b> was founded by the Directors of company, God Power own strong technical background with 14 years experience in Turbocharger Manufacturing Business. God Power is one of the recognized firms extremely indulged in manufacturing. We always here to use advanced technology for manufacturing of good quality of our product. Our offered products are broadly admired by our customers for reliable performance, OEM quality and reasonable prices. These offered products are made using the best quality raw material.</p>
+
+<p>Furthermore, in order to supply the finest quality products, these products are inspected on dissimilar quality parameters using the sophisticated testing tools. Moreover, our company has hired skillful and assiduous experts for inspection of goods before delivery to customers.</p>
+
+<p>Currently God Power equipped with latest dynamic core balancing machine check and test balance speed up 300000 Rpm/min of turbocharger core assembly before delivery to customers. The company produces a verity of models covering Indian market turbochargers and International turbochargers models also.</p>
+
+<p>God power can supply more than 5000 types of turbocharger models and 20000+ parts numbers always. God Power also provides customized product according to every customer\’s special needs.</p>
+
+<p>God Power mainly produces turbocharger and core assemblies for Passenger cars, SUV\’s, Trucks, Bus\’s, Generators, Earthmovers, Marines and Machines etc</p>
+
+<p>God Power Turbo Systems are the leading manufacturing & supplying company of turbochargers and their parts, Exports to North American, Asian, Africa, Brazil, European and Russian Country widely.</p> <br/>
+<p>
+      Our Advantages<br/>
+•	High Quality<br/>
+•	Professional Service<br/>
+•	Quick feedback<br/>
+•	Abundant Variety and Plenty stock<br/>
+<br/>
+      Main Focus<br/>
+•	Free Consultation<br/>
+•   Trust Winning Service<br/>
+•	Reasonable Price<br/>
+•	Satisfaction Guaranteed</p>
+
+
+GENUINE REPLACEMENT PARTS<br/>
+
+<p><b>&copy; GOD POWER TURBO SYSTEMS. ALL RIGHTS RESERVED</b></p>
+</p>]]></string>
 </resources>
