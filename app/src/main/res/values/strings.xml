@@ -25,6 +25,7 @@
     <string name="btn_faq">FAQ</string>
     <string name="btn_events">Events</string>
     <string name="btn_hotproducts">Hot Products</string>
+    <string name="btn_troubleshoot">Troubleshoot</string>
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
     <string name="activity_login">Login</string>
@@ -32,16 +33,20 @@
     <string name="activity_main">Main</string>
     <string name="activity_about">About Us</string>
     <string name="activity_contact">Contact Us</string>
-    <string name="activity_partnumbers">Part Numbers</string>
+    <string name="activity_partnumbers">Search Part Numbers</string>
+    <string name="activity_partnumber">Part Number</string>
     <string name="activity_events">Events</string>
     <string name="activity_hotproducts">Hot Products</string>
     <string name="activity_faq">FAQ</string>
     <string name="activity_logout">Logout</string>
+    <string name="activity_blackboard">Display</string>
     <string name="menu_feedback">Feedback</string>
     <string name="menu_logout">Logout</string>
     <string name="menu_exit">Exit</string>
     <string name="name">Full Name</string>
     <string name="gpts_email">godpower@godpowerturbo.com</string>
+    <string name="search_part_numbers">Search Part Numbers</string>
+    <string name="textCaution">*The company shall not be responsible for any damage or loss to your vehicle or turbocharger all given Turbocharger Troubleshooting &amp; symptoms guide for educational &amp; information purpose only, kindly refer to vehicle service manual or vehicle authorized dealer befre taking any final decision.</string>
     <string name="aboutText"><![CDATA[
 <p><b>God Power Turbo Systems</b><br/>
 <i>Version 1.0 Android</i></p>
@@ -74,4 +79,13 @@ GENUINE REPLACEMENT PARTS<br/>
 
 <p><b>&copy; GOD POWER TURBO SYSTEMS. ALL RIGHTS RESERVED</b></p>
 </p>]]></string>
+    <string name="trouble1"><![CDATA[<font color="red">No.1 Potential causes</font><br>
+<font color="red">A. Potential causes</font><br/>
+Air pipe leakage<br/>
+<font color="red">B. Vehicle / Engine Diagnostic checks</font><br/>
+Check air supply line leakage<br/>
+<font color="red">C. Turbocharger condition and Effects</font><br/>
+Overspeed burst compresore wheel, small dent on rear of compressore wheel<br/>
+<font color="red">D. Recommended Action</font><br>
+Replace or repair leakage from air pipe]]></string>
 </resources>

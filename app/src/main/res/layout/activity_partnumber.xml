@@ -3,7 +3,267 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e60"
-    android:paddingTop="?android:attr/actionBarSize">
+    android:weightSum="100"
+    android:background="#fff">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="45"
+        android:padding="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:background="#fff">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <ImageView
+                android:id="@+id/partImage"
+                android:background="#fff"
+                android:layout_width="250dp"
+                android:layout_height="350dp"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:background="#fff">
+
+        <TextView
+            android:id="@+id/companyName"
+            android:textStyle="normal"
+            android:shadowColor="@color/text_shadow_white"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:paddingTop="7dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:background="#fff">
+
+        <TextView
+            android:text="GP NUMBER"
+            android:textStyle="normal"
+            android:shadowColor="@color/text_shadow_white"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:textColor="#690"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/gpno"
+            android:textStyle="normal"
+            android:shadowColor="@color/text_shadow_white"
+            android:shadowDx="-2"
+            android:layout_marginTop="2dp"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:paddingTop="7dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:background="#fff">
+
+        <TextView
+            android:text="OEM NUMBER"
+            android:textStyle="normal"
+            android:shadowColor="@color/text_shadow_white"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:textColor="#690"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/partNumber"
+            android:textStyle="normal"
+            android:shadowColor="@color/text_shadow_white"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:layout_marginTop="2dp"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:paddingTop="7dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:background="#fff">
+
+        <TextView
+            android:text="APPLICATION"
+            android:textStyle="normal"
+            android:shadowColor="@color/text_shadow_white"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:textColor="#690"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/application"
+            android:textStyle="normal"
+            android:shadowColor="@color/text_shadow_white"
+            android:shadowDx="-2"
+            android:layout_marginTop="2dp"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"/>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="13"
+        android:paddingTop="7dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginLeft="0dp"
+        android:background="#fff">
+
+        <TextView
+            android:text="MODEL"
+            android:textStyle="normal"
+            android:shadowColor="@color/text_shadow_white"
+            android:shadowDx="-2"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:textColor="#690"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/model"
+            android:textStyle="normal"
+            android:shadowColor="@color/text_shadow_white"
+            android:shadowDx="-2"
+            android:layout_marginTop="2dp"
+            android:shadowDy="-2"
+            android:shadowRadius="1"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="13sp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#c0c0c0"/>
 
 </LinearLayout>

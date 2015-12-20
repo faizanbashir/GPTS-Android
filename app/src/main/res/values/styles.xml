@@ -20,4 +20,31 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
+    <style name="tableHead">
+        <item name="android:textSize">13.0sp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:paddingRight">3.0dip</item>
+        <item name="android:paddingLeft">3.0dip</item>
+        <item name="android:paddingTop">12.5dip</item>
+        <item name="android:paddingBottom">12.5dip</item>
+        <item name="android:layout_width">107.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">0.0dip</item>
+        <item name="android:minWidth">107.0dip</item>
+        <item name="android:gravity">left</item>
+    </style>
+    <style name="tableData">
+        <item name="android:textSize">13.0sp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:paddingRight">3.0dip</item>
+        <item name="android:paddingLeft">3.0dip</item>
+        <item name="android:paddingTop">12.5dip</item>
+        <item name="android:paddingBottom">12.5dip</item>
+        <item name="android:layout_width">185.0dip</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">0.0dip</item>
+        <item name="android:minWidth">185.0dip</item>
+        <item name="android:gravity">left</item>
+    </style>
+
 </resources>

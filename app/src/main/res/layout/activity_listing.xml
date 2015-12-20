@@ -6,4 +6,12 @@
     android:background="@drawable/url"
     android:paddingTop="?android:attr/actionBarSize">
 
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="9dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"/>
+
 </LinearLayout>

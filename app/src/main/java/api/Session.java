@@ -21,6 +21,7 @@ public class Session {
     private static final String NAME = "name";
     private static final String EMAIL = "email";
     private static final String MOBILE = "mobile";
+    private static final String KEY_FIRST_RUN = "firstRun";
     private static final String ID = "id";
     private static final String ACTIVE_STATUS = "status";
 
@@ -30,12 +31,22 @@ public class Session {
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
         editor.apply();
-    }
+     }
 
     public void setLogin(boolean isLoggedIn) {
         editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
         editor.commit();
         Log.d(TAG, "User login session modified!");
+    }
+
+    public void firstRun(){
+        editor.putBoolean(KEY_FIRST_RUN, false);
+        editor.commit();
+        Log.e(TAG, "First Run");
+    }
+
+    public boolean isFirstRun(){
+        return pref.getBoolean(KEY_FIRST_RUN, true);
     }
 
     public void setUser(HashMap<String, String> map){

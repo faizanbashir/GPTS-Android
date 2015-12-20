@@ -1,21 +1,33 @@
 package com.godpowerturbo.android;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.sql.SQLException;
+import java.util.Arrays;
+
+import api.Database;
+import api.Resource;
 import api.Session;
 
-public class Welcome extends ActionBarActivity {
+public class Welcome extends Activity {
     private static String TAG = Welcome.class.getSimpleName();
-    Context context = this;
+    Context mCtx = this;
     private static final int TIMER = 3000;
+    Session session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        session = new Session(mCtx);
         init(TIMER);
     }
 
@@ -24,11 +36,14 @@ public class Welcome extends ActionBarActivity {
             @Override
             public void run() {
                 try{
-                    Thread.sleep(timer);
-                    Session session = new Session(context);
-                    Log.d(TAG, "USER INFO");
-                    Log.d(TAG, "Login Status: " + session.isLoggedIn());
-                    if(session.isLoggedIn()){
+                    if(!session.isFirstRun()){
+                        Log.e(TAG, "Sleeping: Zzzzzzzzzzzzzzzzzzzzzzzzz");
+                        Thread.sleep(timer);
+                    }
+                    setUpDB();
+                    Log.e(TAG, "USER INFO");
+                    Log.e(TAG, "Login Status: " + session.isLoggedIn());
+                    if(true){
                         Intent i = new Intent(Welcome.this, Main.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
@@ -45,4 +60,115 @@ public class Welcome extends ActionBarActivity {
             }
         }).start();
     }
+
+    private void setUpDB(){
+        try{
+            if(session.isFirstRun()){
+                session.firstRun();
+                AssetManager asset = mCtx.getAssets();
+                Database db = new Database(mCtx);
+                db.open();
+                copyCompany(db, asset);
+                copyPartnumbers(db, asset);
+                copySymptoms(db, asset);
+                copyCause(db, asset);
+                copyPotentialCause(db, asset);
+                db.close();
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void copyCompany(Database db, AssetManager asset) throws SQLException{
+        try{
+            InputStream in = asset.open(Resource.CSV_COMPANY);
+            InputStreamReader ins = new InputStreamReader(in);
+            BufferedReader br = new BufferedReader(ins);
+            String line;
+            String[] value;
+            while((line = br.readLine()) != null){
+                value = line.split(";");
+                Log.e(TAG, "Value: " + Arrays.toString(value));
+                db.insertCompany(value[0], value[1]);
+            }
+            in.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void copyPotentialCause(Database db, AssetManager asset) throws SQLException{
+        try{
+            InputStream in = asset.open(Resource.CSV_POTENTIAL_CAUSES);
+            InputStreamReader ins = new InputStreamReader(in);
+            BufferedReader br = new BufferedReader(ins);
+            String line;
+            String[] value;
+            while((line = br.readLine()) != null){
+                value = line.split(";");
+                Log.e(TAG, "Value: " + Arrays.toString(value));
+                db.insertPotentialCause(value[0], value[1]);
+            }
+            in.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void copyPartnumbers(Database db, AssetManager asset) throws SQLException{
+        try{
+            InputStream in = asset.open(Resource.CSV_PARTNUMBERS);
+            InputStreamReader ins = new InputStreamReader(in);
+            BufferedReader br = new BufferedReader(ins);
+            String line;
+            String[] value;
+            while((line = br.readLine()) != null){
+                value = line.split(";");
+                String image = (value[6] == null  ? null : value[6]);
+                Log.e(TAG, "Value: " + Arrays.toString(value));
+                db.insertPartnumbers(value[0], value[1], value[2], value[3], value[4], value[5], image);
+            }
+            in.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void copySymptoms(Database db, AssetManager asset) throws SQLException{
+        try{
+            InputStream in = asset.open(Resource.CSV_SYMPTOMS);
+            InputStreamReader ins = new InputStreamReader(in);
+            BufferedReader br = new BufferedReader(ins);
+            String line;
+            String[] value;
+            while((line = br.readLine()) != null){
+                value = line.split(";");
+                Log.e(TAG, "Value: " + Arrays.toString(value));
+                db.insertSymptom(value[0], value[1]);
+            }
+            in.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void copyCause(Database db, AssetManager asset) throws SQLException{
+        try{
+            InputStream in = asset.open(Resource.CSV_CAUSES);
+            InputStreamReader ins = new InputStreamReader(in);
+            BufferedReader br = new BufferedReader(ins);
+            String line;
+            String[] value;
+            while((line = br.readLine()) != null){
+                value = line.split(";");
+                Log.e(TAG, "Value: " + Arrays.toString(value));
+                db.insertCause(value[0], value[1], value[2], value[3]);
+            }
+            in.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+
 }

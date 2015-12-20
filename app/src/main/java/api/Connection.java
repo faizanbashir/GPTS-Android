@@ -31,4 +31,22 @@ public class Connection {
         return false;
     }
 
+    public static boolean getConnection(Context ctx){
+        ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        try{
+            boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+            if(isConnected){
+                Log.e("Network Status", "Connected");
+                return true;
+            }else{
+                Log.e("Network Status", "Not Connected");
+                return false;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

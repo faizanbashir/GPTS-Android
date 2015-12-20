@@ -14,7 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import api.Connection;
 import api.Resource;
 import api.Session;
 
@@ -61,6 +63,7 @@ public class Main extends ActionBarActivity {
                 break;
             case R.id.menu_exit:
                 stopService(new Intent(Main.this, MyService.class));
+                finish();
                 android.os.Process.killProcess(Resource.PID);
                 break;
         }
@@ -84,7 +87,7 @@ public class Main extends ActionBarActivity {
         partNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Main.this, PartNumber.class);
+                Intent i = new Intent(Main.this, CompanyListing.class);
                 startActivity(i);
             }
         });
@@ -98,22 +101,30 @@ public class Main extends ActionBarActivity {
         faq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Main.this, FAQ.class);
+                Intent i = new Intent(Main.this, Troubleshootlisting.class);
                 startActivity(i);
             }
         });
         events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Main.this, Events.class);
-                startActivity(i);
+                if(Connection.getConnection(mCtx)){
+                    Intent i = new Intent(Main.this, EventsListing.class);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Check your Internet Connection", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         hotProducts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Main.this, HotProducts.class);
-                startActivity(i);
+                if(Connection.getConnection(mCtx)){
+                    Intent i = new Intent(Main.this, HotProductsListing.class);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Check your Internet Connection", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -127,6 +138,7 @@ public class Main extends ActionBarActivity {
     @Override
     protected void onDestroy() {
         stopService(new Intent(Main.this, MyService.class));
+        finish();
         super.onDestroy();
     }
 }
