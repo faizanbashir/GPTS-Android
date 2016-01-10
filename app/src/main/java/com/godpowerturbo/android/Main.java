@@ -1,40 +1,41 @@
 package com.godpowerturbo.android;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.support.percent.PercentRelativeLayout;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import api.Connection;
-import api.Resource;
 import api.Session;
 
-public class Main extends ActionBarActivity {
+public class Main extends NavigationActivity {
+    DrawerLayout dw;
+    PercentRelativeLayout rl;
     private static final String TAG = Main.class.getSimpleName();
-    ImageButton about, partNumber, contact, faq, events, hotProducts;
+    ImageButton about, partNumber, turbofailure, contact, faq, events, hotProducts, feedback;
+    ImageButton nav;
     private Context mCtx = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate()");
         Session session = new Session(mCtx);
         Log.e(TAG, "LOG_ID: " + session.getLogId());
         session.putAll();
-        setUpActionBar();
         registerViews();
     }
 
@@ -43,40 +44,23 @@ public class Main extends ActionBarActivity {
         Intent i = new Intent(Main.this, MyService.class);
         startService(i);
         super.onStart();
+        rl = (PercentRelativeLayout) findViewById(R.id.nav_left);
+        dw = (DrawerLayout) findViewById(R.id.nav_drawer);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_welcome, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                break;
-            case R.id.menu_logout:
-                Intent i = new Intent(Main.this, Logout.class);
-                startActivity(i);
-                break;
-            case R.id.menu_exit:
-                stopService(new Intent(Main.this, MyService.class));
-                finish();
-                android.os.Process.killProcess(Resource.PID);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+    public void  searchDB(View v){
+        Log.e(TAG, "Search the Database");
     }
 
     private void registerViews(){
-        about = (ImageButton) findViewById(R.id.btnAboutUs);
-        partNumber = (ImageButton) findViewById(R.id.btnPartNumber);
-        contact = (ImageButton) findViewById(R.id.btnContactUs);
-        faq = (ImageButton) findViewById(R.id.btnFAQ);
-        events = (ImageButton) findViewById(R.id.btnEvents);
-        hotProducts = (ImageButton) findViewById(R.id.btnHP);
+        about = (ImageButton) findViewById(R.id.AboutUs);
+        partNumber = (ImageButton) findViewById(R.id.Catalogue);
+        contact = (ImageButton) findViewById(R.id.Enquiry);
+        faq = (ImageButton) findViewById(R.id.FAQ);
+        turbofailure = (ImageButton) findViewById(R.id.TurboFaliure);
+        events = (ImageButton) findViewById(R.id.UpComingEvent);
+        hotProducts = (ImageButton) findViewById(R.id.NewLaunch);
+        feedback = (ImageButton) findViewById(R.id.Feedback);
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,11 +82,25 @@ public class Main extends ActionBarActivity {
                 startActivity(i);
             }
         });
-        faq.setOnClickListener(new View.OnClickListener() {
+        turbofailure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Main.this, Troubleshootlisting.class);
                 startActivity(i);
+            }
+        });
+        faq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent i = new Intent(Main.this, .class);
+                //startActivity(i);
+            }
+        });
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Intent i = new Intent(Main.this, .class);
+                //startActivity(i);
             }
         });
         events.setOnClickListener(new View.OnClickListener() {
@@ -127,12 +125,6 @@ public class Main extends ActionBarActivity {
                 }
             }
         });
-    }
-
-    private void setUpActionBar(){
-        ActionBar ab = getSupportActionBar();
-        ab.setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor(Resource.STACKED_BACKGROUND)));
-        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Resource.BACKGROUND_DRAWABLE)));
     }
 
     @Override

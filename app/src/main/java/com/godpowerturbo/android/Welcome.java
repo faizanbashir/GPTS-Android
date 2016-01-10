@@ -31,6 +31,7 @@ public class Welcome extends Activity {
         init(TIMER);
     }
 
+
     public void init(final int timer){
         new Thread(new Runnable() {
             @Override

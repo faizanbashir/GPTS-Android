@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    compileSdkVersion 23
+    buildToolsVersion '23.0.1'
+    enforceUniquePackageName false
 
     defaultConfig {
         applicationId "com.godpowerturbo.android"
@@ -22,7 +23,10 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.0.1'
+    compile 'com.android.support:percent:22.2.0'
     compile 'com.mcxiaoke.volley:library:1.0.18'
     compile 'com.basgeekball:awesome-validation:1.1'
+    compile 'com.github.mikepenz:MaterialDrawer:v4.6.3'
 }

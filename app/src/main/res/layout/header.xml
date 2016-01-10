@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@android:color/transparent"
+    android:paddingTop="0dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="0dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="10.5%"
+        app:layout_heightPercent="60%">
+
+        <ImageButton
+            android:background="@drawable/option"
+            android:id="@+id/nav_menu"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            app:layout_widthPercent="10%"
+            app:layout_heightPercent="9%"
+            android:layout_alignParentLeft="true"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="60%"
+        android:background="@drawable/searchbar"
+        android:layout_alignParentRight="true">
+
+        <EditText
+            android:background="@android:color/transparent"
+            android:paddingLeft="4dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:id="@+id/query"
+            android:textSize="15sp"
+            android:layout_width="155dp"
+            android:layout_height="30dp"
+            app:layout_widthPercent="60%"
+            app:layout_heightPercent="40%"
+
+            android:layout_alignParentRight="true"/>
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/search"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            app:layout_widthPercent="20%"
+            app:layout_heightPercent="40%"/>
+
+    </LinearLayout>
+
+</android.support.percent.PercentRelativeLayout>
