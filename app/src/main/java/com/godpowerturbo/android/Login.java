@@ -5,8 +5,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.location.GpsSatellite;
-import android.location.GpsStatus;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.telephony.TelephonyManager;
@@ -42,7 +40,7 @@ import api.Session;
 
 public class Login extends Activity {
     private static String TAG = Login.class.getSimpleName();
-    EditText username, password;
+    EditText username;
     Button signIn, signUp;
     private ProgressDialog dialog;
     Context context = this;
@@ -63,7 +61,6 @@ public class Login extends Activity {
 
     private void registerViews(){
         username = (EditText) findViewById(R.id.editTextPhone);
-        password = (EditText) findViewById(R.id.editTextPassword);
         signIn = (Button) findViewById(R.id.buttonSignIn);
         signUp = (Button) findViewById(R.id.buttonSignUp);
         final AwesomeValidation av = new AwesomeValidation(ValidationStyle.COLORATION);
@@ -131,6 +128,7 @@ public class Login extends Activity {
                                     session.setUser(map);
                                     Intent i = new Intent(Login.this, Main.class);
                                     i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    i.putExtra("login", true);
                                     startActivity(i);
                                     finish();
                                 }else{
@@ -154,7 +152,7 @@ public class Login extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Error Response: " + error.toString());
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Please try Again", Toast.LENGTH_SHORT).show();
                 hideDialog();
                 vibrate();
             }
@@ -177,7 +175,6 @@ public class Login extends Activity {
 
     private void setValidation(AwesomeValidation av){
         av.addValidation(Login.this, R.id.editTextPhone, Patterns.PHONE, R.string.err_phone);
-        av.addValidation(Login.this, R.id.editTextPassword, "[a-zA-Z0-9_\\\\s]+", R.string.err_name);
     }
 
     private void showDialog(){

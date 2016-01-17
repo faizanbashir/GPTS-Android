@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nav_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#fff"
     android:layout_height="match_parent"
-    android:background="@drawable/url"
     android:paddingTop="?android:attr/actionBarSize">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TitleText"
+        android:text="@string/activity_contact"/>
+
     <RelativeLayout
         android:id="@+id/btnFeedback"
         android:layout_width="fill_parent"
@@ -32,3 +49,125 @@
     </RelativeLayout>
 
 </RelativeLayout>
+
+    <android.support.percent.PercentRelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/nav_left"
+        android:layout_gravity="left"
+        android:background="@drawable/nave"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/nav_home"
+            android:layout_width="95dp"
+            android:layout_height="35dp"
+            app:layout_widthPercent="35%"
+            app:layout_heightPercent="5%"
+            app:layout_marginLeftPercent="2%"
+            app:layout_marginTopPercent="15.4%"/>
+
+        <android.support.percent.PercentRelativeLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_below="@+id/nav_home"
+            android:id="@+id/lay_min"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_marginTopPercent="0.2%"
+            app:layout_marginLeftPercent="2%">
+
+            <ImageButton
+                android:background="@android:color/transparent"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/nav_catalogue"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="77%"
+                app:layout_heightPercent="7.8%"/>
+
+            <ImageButton
+                android:layout_below="@+id/nav_catalogue"
+                android:background="@android:color/transparent"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/nav_upcomingevents"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="77%"
+                app:layout_heightPercent="7.8%"/>
+
+            <ImageButton
+                android:layout_below="@+id/nav_upcomingevents"
+                android:background="@android:color/transparent"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/nav_newlaunch"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="77%"
+                app:layout_heightPercent="7.8%"/>
+
+            <ImageButton
+                android:layout_below="@+id/nav_newlaunch"
+                android:background="@android:color/transparent"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/nav_turbofailure"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="77%"
+                app:layout_heightPercent="7.8%"/>
+
+            <ImageButton
+                android:layout_below="@+id/nav_turbofailure"
+                android:background="@android:color/transparent"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/nav_aboutus"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="77%"
+                app:layout_heightPercent="7.8%"/>
+
+            <ImageButton
+                android:layout_below="@+id/nav_aboutus"
+                android:background="@android:color/transparent"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/nav_enquiry"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="77%"
+                app:layout_heightPercent="7.8%"/>
+
+            <ImageButton
+                android:layout_below="@+id/nav_enquiry"
+                android:background="@android:color/transparent"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/nav_faq"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="77%"
+                app:layout_heightPercent="7.8%"/>
+
+            <ImageButton
+                android:layout_below="@+id/nav_faq"
+                android:background="@android:color/transparent"
+                android:layout_alignParentLeft="true"
+                android:id="@+id/nav_feedback"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="77%"
+                app:layout_heightPercent="7.8%"/>
+
+            <View
+                android:id="@+id/lazy_view"
+                android:layout_below="@id/nav_feedback"
+                android:background="@android:color/transparent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_widthPercent="77%"
+                app:layout_heightPercent="40%"/>
+
+        </android.support.percent.PercentRelativeLayout>
+
+    </android.support.percent.PercentRelativeLayout>
+
+</android.support.v4.widget.DrawerLayout>

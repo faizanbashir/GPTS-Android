@@ -2,11 +2,10 @@ package com.godpowerturbo.android;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -15,49 +14,45 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.SQLException;
-
 import api.Connection;
-import api.Database;
 import api.Resource;
 
-public class PartNumber extends AppCompatActivity{
-    private static final String TAG = PartNumber.class.getSimpleName();
-    private Context mCtx = this;
+public class Faq extends AppCompatActivity {
+
     DrawerLayout dw;
     PercentRelativeLayout rl, l;
     android.support.v4.app.ActionBarDrawerToggle mDrawerToggle;
     EditText searchbox;
-    ImageButton nav, nav_home, nav_catalogue, nav_upcomingevents, nav_newlaunch,
-            nav_turbofailure, nav_aboutus, nav_enquiry, nav_faq, nav_feedback,
-            nav_search;
-    String TAG_PARTNUMBER;
-    String TAG_ID;
-    TextView cmp, pat, app, gpn, mod;
-    ImageView iv;
+    ImageButton nav, nav_home, nav_catalogue, nav_upcomingevents,
+            nav_newlaunch, nav_turbofailure, nav_aboutus, nav_enquiry,
+            nav_faq, nav_feedback, nav_search;
+    private static final String TAG = Faq.class.getSimpleName();
+    private Context mCtx = this;
+    TextView txtFaq;
+    WebView wb;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_partnumber);
+        setContentView(R.layout.activity_faq);
         Log.e(TAG, "onCreate");
         registerViews();
     }
 
     private void registerViews(){
-        iv = (ImageView) findViewById(R.id.partImage);
-        cmp = (TextView) findViewById(R.id.companyName);
-        pat = (TextView) findViewById(R.id.partNumber);
-        app = (TextView) findViewById(R.id.application);
-        gpn = (TextView) findViewById(R.id.gpno);
-        mod = (TextView) findViewById(R.id.model);
-        displayImage();
+        txtFaq = (TextView) findViewById(R.id.textFaq);
+        txtFaq.setText("FAQ");
+        wb = (WebView) findViewById(R.id.webFaq);
+        WebSettings ws = wb.getSettings();
+        ws.setBuiltInZoomControls(true);
+        wb.loadData(getResources().getString(R.string.faq), "text/html", "utf-8");
         //Drawer Buttons
         nav_home = (ImageButton) findViewById(R.id.nav_home);
         nav_catalogue = (ImageButton) findViewById(R.id.nav_catalogue);
@@ -71,14 +66,14 @@ public class PartNumber extends AppCompatActivity{
         nav_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PartNumber.this, Main.class);
+                Intent i = new Intent(Faq.this, Main.class);
                 startActivity(i);
             }
         });
         nav_catalogue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PartNumber.this, CompanyListing.class);
+                Intent i = new Intent(Faq.this, CompanyListing.class);
                 startActivity(i);
             }
         });
@@ -86,7 +81,7 @@ public class PartNumber extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 if(Connection.getConnection(mCtx)){
-                    Intent i = new Intent(PartNumber.this, EventsListing.class);
+                    Intent i = new Intent(Faq.this, EventsListing.class);
                     startActivity(i);
                 }else{
                     Toast.makeText(getApplicationContext(), "Check your Internet Connection", Toast.LENGTH_SHORT).show();
@@ -97,7 +92,7 @@ public class PartNumber extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 if(Connection.getConnection(mCtx)){
-                    Intent i = new Intent(PartNumber.this, HotProductsListing.class);
+                    Intent i = new Intent(Faq.this, HotProductsListing.class);
                     startActivity(i);
                 }else{
                     Toast.makeText(getApplicationContext(), "Check your Internet Connection", Toast.LENGTH_SHORT).show();
@@ -107,46 +102,41 @@ public class PartNumber extends AppCompatActivity{
         nav_turbofailure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PartNumber.this, Troubleshootlisting.class);
+                Intent i = new Intent(Faq.this, Troubleshootlisting.class);
                 startActivity(i);
             }
         });
         nav_aboutus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PartNumber.this, About.class);
+                Intent i = new Intent(Faq.this, About.class);
                 startActivity(i);
             }
         });
         nav_enquiry.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PartNumber.this, Contact.class);
+                Intent i = new Intent(Faq.this, Contact.class);
                 startActivity(i);
             }
         });
         nav_faq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PartNumber.this, Faq.class);
+                Intent i = new Intent(Faq.this, Faq.class);
                 startActivity(i);
             }
         });
         nav_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PartNumber.this, Feedback.class);
+                Intent i = new Intent(Faq.this, Feedback.class);
                 startActivity(i);
             }
         });
         dw = (DrawerLayout) findViewById(R.id.nav_main);
         rl = (PercentRelativeLayout) findViewById(R.id.nav_left);
         pk();
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
     }
 
     private void pk(){
@@ -200,102 +190,10 @@ public class PartNumber extends AppCompatActivity{
                 Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
-                Intent i = new Intent(PartNumber.this, PartNumberListing.class);
+                Intent i = new Intent(Faq.this, PartNumberListing.class);
                 i.putExtras(bd);
                 startActivity(i);
             }
         });
-    }
-
-    private void displayImage(){
-        TAG_PARTNUMBER = getIntent().getStringExtra("partnumber");
-        TAG_ID = getIntent().getStringExtra("_id");
-        Log.e(TAG, "PartNumber: " + TAG_PARTNUMBER);
-        Database db = new Database(mCtx);
-        try{
-            db.open();
-            Cursor c = db.getDetails(TAG_ID);
-            Log.e(TAG, "List Data: " + DatabaseUtils.dumpCursorToString(c));
-            setData(c);
-            db.close();
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    private void setData(Cursor c){
-        c.moveToFirst();
-        Log.e(TAG, "Cursor Data 0th: " + c.getString(0));
-        String gpno  = c.getString(c.getColumnIndex("gpno"));
-        String company = c.getString(c.getColumnIndex("company"));
-        String application = c.getString(c.getColumnIndex("application"));
-        String model = c.getString(c.getColumnIndex("model"));
-        String partnumber = c.getString(c.getColumnIndex("oemno"));
-        String image = c.getString(c.getColumnIndex("image"));
-        int i = setImage(image);
-        iv.setScaleType(ImageView.ScaleType.FIT_XY);
-        iv.setImageResource(i);
-        gpn.setText(gpno);
-        cmp.setText(company);
-        pat.setText(partnumber);
-        mod.setText(model);
-        app.setText(application);
-    }
-
-    private int setImage(String id){
-        switch(id){
-            case "0":
-                return 0;
-            case "1":
-                return R.drawable.i1;
-            case "2":
-                return R.drawable.i2;
-            case "3":
-                return R.drawable.i3;
-            case "4":
-                return R.drawable.i4;
-            case "5":
-                return R.drawable.i5;
-            case "6":
-                return R.drawable.i6;
-            case "7":
-                return R.drawable.i7;
-            case "8":
-                return R.drawable.i8;
-            case "9":
-                return R.drawable.i9;
-            case "10":
-                return R.drawable.i10;
-            case "11":
-                return R.drawable.i11;
-            case "12":
-                return R.drawable.i12;
-            case "13":
-                return R.drawable.i13;
-            case "14":
-                return R.drawable.i14;
-            case "16":
-                return R.drawable.i16;
-            case "17":
-                return R.drawable.i17;
-            case "18":
-                return R.drawable.i18;
-            case "19":
-                return R.drawable.i19;
-            case "20":
-                return R.drawable.i20;
-            case "21":
-                return R.drawable.i21;
-            case "22":
-                return R.drawable.i22;
-            case "23":
-                return R.drawable.i23;
-            case "24":
-                return R.drawable.i24;
-            case "25":
-                return R.drawable.i25;
-            default:
-                return 0;
-        }
     }
 }

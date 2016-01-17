@@ -44,7 +44,8 @@ public class MyService extends Service {
         Connection conn = new Connection(mCtx);
         boolean isConnected = conn.getConnection();
         if(isConnected){
-            validate();
+            if(getString(R.string.login).equals("false"))
+                validate();
         }
         super.onCreate();
     }

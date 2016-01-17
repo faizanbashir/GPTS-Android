@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.godpowerturbo.android"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 23
         versionCode 2
         versionName "2.0"
     }
@@ -29,4 +29,6 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.18'
     compile 'com.basgeekball:awesome-validation:1.1'
     compile 'com.github.mikepenz:MaterialDrawer:v4.6.3'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.11'
+    compile 'com.github.yesidlazaro:GmailBackground:1.0'
 }

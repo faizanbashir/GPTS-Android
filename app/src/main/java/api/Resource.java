@@ -19,11 +19,6 @@ public class Resource {
     public static final String CSV_CAUSES = "troubleshoot_causes.csv";
     public static final String CSV_POTENTIAL_CAUSES = "troubleshoot_potential_cause.csv";
 
-
-    //Color Resources
-    public static final String STACKED_BACKGROUND = "#80000000";
-    public static final String BACKGROUND_DRAWABLE = "#59000000";
-
     //Vibration Time
     public static final int VIBR_TIME = 200; //200 Miliseconds = 0.2 Seconds
 
@@ -37,15 +32,5 @@ public class Resource {
 
     //PID
     public static final int PID = android.os.Process.myPid();
-
-    public static final String HTML = "<font color=\"red\">No.1 Potential causes</font><br>\n" +
-            "<font color=\"red\">A. Potential causes</font><br/>\n" +
-            "Air pipe leakage<br/>\n" +
-            "<font color=\"red\">B. Vehicle / Engine Diagnostic checks</font><br/>\n" +
-            "Check air supply line leakage<br/>\n" +
-            "<font color=\"red\">C. Turbocharger condition and Effects</font><br/>\n" +
-            "Overspeed burst compresore wheel, small dent on rear of compressore wheel<br/>\n" +
-            "<font color=\"red\">D. Recommended Action</font><br>\n" +
-            "Replace or repair leakage from air pipe";
 
 }

@@ -39,7 +39,7 @@ import api.Resource;
 
 public class Register extends Activity {
     private static String TAG = Register.class.getSimpleName();
-    EditText name, phone, email, password;
+    EditText name, phone, email;
     Button signIn, signUp;
     private ProgressDialog dialog;
     private Vibrator vibrate;
@@ -64,7 +64,6 @@ public class Register extends Activity {
         name = (EditText) findViewById(R.id.editTextName);
         phone = (EditText) findViewById(R.id.editTextPhone);
         email = (EditText) findViewById(R.id.editTextEmail);
-        password = (EditText) findViewById(R.id.editTextPassword);
         signUp = (Button) findViewById(R.id.buttonSignUp);
         signIn = (Button) findViewById(R.id.buttonSignIn);
         final AwesomeValidation av = new AwesomeValidation(ValidationStyle.COLORATION);
@@ -134,7 +133,7 @@ public class Register extends Activity {
             public void onErrorResponse(VolleyError error) {
                 hidedialog();
                 Log.e(TAG, "Error Response: " + error.toString());
-                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Please try again", Toast.LENGTH_SHORT).show();
                 vibrate();
             }
         }){
@@ -159,7 +158,7 @@ public class Register extends Activity {
     private void setValidation(AwesomeValidation av){
         av.addValidation(Register.this, R.id.editTextPhone, Patterns.PHONE, R.string.err_phone);
         av.addValidation(Register.this, R.id.editTextEmail, Patterns.EMAIL_ADDRESS, R.string.err_email);
-        av.addValidation(Register.this, R.id.editTextName, "^[a-zA-z\\\\s]+", R.string.err_name);
+        av.addValidation(Register.this, R.id.editTextName, "^[a-z A-z\\\\s]+", R.string.err_name);
     }
 
     private void showdialog(){

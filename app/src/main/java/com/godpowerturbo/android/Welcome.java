@@ -31,7 +31,6 @@ public class Welcome extends Activity {
         init(TIMER);
     }
 
-
     public void init(final int timer){
         new Thread(new Runnable() {
             @Override
@@ -44,7 +43,7 @@ public class Welcome extends Activity {
                     setUpDB();
                     Log.e(TAG, "USER INFO");
                     Log.e(TAG, "Login Status: " + session.isLoggedIn());
-                    if(true){
+                    if(session.isLoggedIn()){
                         Intent i = new Intent(Welcome.this, Main.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
@@ -90,7 +89,6 @@ public class Welcome extends Activity {
             String[] value;
             while((line = br.readLine()) != null){
                 value = line.split(";");
-                Log.e(TAG, "Value: " + Arrays.toString(value));
                 db.insertCompany(value[0], value[1]);
             }
             in.close();
@@ -108,7 +106,6 @@ public class Welcome extends Activity {
             String[] value;
             while((line = br.readLine()) != null){
                 value = line.split(";");
-                Log.e(TAG, "Value: " + Arrays.toString(value));
                 db.insertPotentialCause(value[0], value[1]);
             }
             in.close();
@@ -127,7 +124,6 @@ public class Welcome extends Activity {
             while((line = br.readLine()) != null){
                 value = line.split(";");
                 String image = (value[6] == null  ? null : value[6]);
-                Log.e(TAG, "Value: " + Arrays.toString(value));
                 db.insertPartnumbers(value[0], value[1], value[2], value[3], value[4], value[5], image);
             }
             in.close();
@@ -145,7 +141,6 @@ public class Welcome extends Activity {
             String[] value;
             while((line = br.readLine()) != null){
                 value = line.split(";");
-                Log.e(TAG, "Value: " + Arrays.toString(value));
                 db.insertSymptom(value[0], value[1]);
             }
             in.close();
@@ -163,7 +158,6 @@ public class Welcome extends Activity {
             String[] value;
             while((line = br.readLine()) != null){
                 value = line.split(";");
-                Log.e(TAG, "Value: " + Arrays.toString(value));
                 db.insertCause(value[0], value[1], value[2], value[3]);
             }
             in.close();

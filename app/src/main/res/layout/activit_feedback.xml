@@ -7,49 +7,93 @@
 
     <FrameLayout
         android:id="@+id/content_frame"
-        android:background="@drawable/nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:paddingTop="?android:attr/actionBarSize"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:weightSum="100">
-
-    <TextView
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textBlackboard"
-        style="@style/TitleText"/>
-
-    <com.android.volley.toolbox.NetworkImageView
-        android:id="@+id/imageBoard"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingTop="5dp"
-        android:layout_weight="50"/>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50">
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:weightSum="100"
+        android:paddingTop="?android:attr/actionBarSize">
 
         <TextView
-            android:id="@+id/textBoard"
+            style="@style/TitleText"
+            android:id="@+id/textFeedback"
             android:layout_width="match_parent"
-            android:paddingTop="15dp"
-            android:paddingBottom="10dp"
-            android:textSize="20sp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="0dp"
+            android:layout_weight="5"/>
 
-    </ScrollView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"/>
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_height="0dp"
+            android:layout_weight="85">
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/btn_login_bg"
+                android:hint="@string/feedback_name"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:inputType="textPersonName"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_login_hint" />
+
+            <EditText
+                android:id="@+id/editTextSubject"
+                android:layout_below="@id/editTextName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/btn_login_bg"
+                android:hint="@string/feedback_suggestion"
+                android:padding="10dp"
+                android:singleLine="true"
+                android:inputType="text"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_login_hint" />
+
+            <EditText
+                android:id="@+id/editTextMsg"
+                android:layout_width="fill_parent"
+                android:layout_below="@id/editTextSubject"
+                android:layout_height="165dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/btn_login_bg"
+                android:hint="@string/feedback"
+                android:inputType="textMultiLine"
+                android:padding="10dp"
+                android:singleLine="false"
+                android:textColor="@color/input_register"
+                android:textColorHint="@color/input_login_hint" />
+
+            <Button
+                android:id="@+id/buttonSubmit"
+                android:layout_below="@id/editTextMsg"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:background="@color/btn_login_bg"
+                android:text="@string/feedback_submit"
+                android:textColor="@color/bg_register" />
+
+            <!-- Link to Login Screen -->
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
     <android.support.percent.PercentRelativeLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"

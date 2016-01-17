@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -49,7 +48,6 @@ public class Database {
     SQLiteDatabase db;
 
     public Database(Context paramContext){
-        Log.e(TAG, "Constructor");
         mCtx = paramContext;
         DBHelper = new DatabaseHelper(mCtx);
     }
@@ -67,24 +65,21 @@ public class Database {
         ContentValues values = new ContentValues();
         values.put(KEY_ID, _id);
         values.put(KEY_COMPANY, company);
-        long id = db.insert(DATABASE_TABLE_COMPANY, null, values);
-        Log.e(TAG, "Value inserted into " + DATABASE_TABLE_COMPANY + ": " + id);
+        db.insert(DATABASE_TABLE_COMPANY, null, values);
     }
 
     public void insertPotentialCause(String _id, String pcause){
         ContentValues values = new ContentValues();
         values.put(KEY_ID, _id);
         values.put(KEY_POTENTIAL_CAUSE, pcause);
-        long id = db.insert(DATABASE_TABLE_POTENTIAL_CAUSES, null, values);
-        Log.e(TAG, "Value inserted into " + DATABASE_TABLE_POTENTIAL_CAUSES + ": " + id);
+        db.insert(DATABASE_TABLE_POTENTIAL_CAUSES, null, values);
     }
 
     public void insertSymptom(String _id, String symptom){
         ContentValues values = new ContentValues();
         values.put(KEY_ID, _id);
         values.put(KEY_SYMPTOM, symptom);
-        long id = db.insert(DATABASE_TABLE_SYMPTOMS, null, values);
-        Log.e(TAG, "Value inserted into " + DATABASE_TABLE_SYMPTOMS + ": " + id);
+        db.insert(DATABASE_TABLE_SYMPTOMS, null, values);
     }
 
     public void insertCause(String _id, String symptom, String cause, String no){
@@ -93,8 +88,7 @@ public class Database {
         values.put(KEY_SYMPTOM, symptom);
         values.put(KEY_CAUSE, cause);
         values.put(KEY_POTENTIAL_CAUSE_NO, no);
-        long id = db.insert(DATABASE_TABLE_CAUSES, null, values);
-        Log.e(TAG, "Value inserted into " + DATABASE_TABLE_CAUSES + ": " + id);
+        db.insert(DATABASE_TABLE_CAUSES, null, values);
     }
 
     public void insertPartnumbers(String _id, String gpno, String oem, String application, String model, String company, String image){
@@ -106,8 +100,7 @@ public class Database {
         values.put(KEY_MODEL, model);
         values.put(KEY_COMPANY, company);
         values.put(KEY_IMAGE, image);
-        long id = db.insert(DATABASE_TABLE_PARTNUMBERS, null, values);
-        Log.e(TAG, "Value inserted into " + DATABASE_TABLE_PARTNUMBERS + ": " + id);
+        db.insert(DATABASE_TABLE_PARTNUMBERS, null, values);
     }
 
     public Cursor getCauses(String symptom){
@@ -146,33 +139,32 @@ public class Database {
         return null;
     }
 
+    public Cursor getAll(){
+        String sql = "SELECT * FROM PARTNUMBERS";
+        Cursor c = db.rawQuery(sql, null);
+        if(c != null){
+            return c;
+        }
+        return null;
+    }
+
     public List<String> getCompany(){
-        Log.e(TAG, "DB Path: " + mCtx.getDatabasePath(DATABASE_NAME).getAbsolutePath());
         Cursor c = db.query(DATABASE_TABLE_COMPANY, null, null, null, null, null, null);
-        //Cursor c = db.rawQuery("SELECT * from " + DATABASE_TABLE_COMPANY, null);
         List<String> results = new ArrayList<>();
-        //Log.e(TAG, "Cursor data: " + DatabaseUtils.dumpCursorToString(c));
         int iCM = c.getColumnIndex(KEY_COMPANY);
         for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
-            Log.e(TAG, "Loop data: " + c.getString(iCM));
             results.add(c.getString(iCM));
         }
-        Log.e(TAG, "Results: " + results);
         return results;
     }
 
     public List<String> getSymptoms(){
-        Log.e(TAG, "DB Path: " + mCtx.getDatabasePath(DATABASE_NAME).getAbsolutePath());
         Cursor c = db.query(DATABASE_TABLE_SYMPTOMS, null, null, null, null, null, null);
-        //Cursor c = db.rawQuery("SELECT * from " + DATABASE_TABLE_COMPANY, null);
         List<String> results = new ArrayList<>();
-        //Log.e(TAG, "Cursor data: " + DatabaseUtils.dumpCursorToString(c));
         int iCM = c.getColumnIndex(KEY_SYMPTOM);
         for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
-            Log.e(TAG, "Loop data: " + c.getString(iCM));
             results.add(c.getString(iCM));
         }
-        Log.e(TAG, "Results: " + results);
         return results;
     }
 
@@ -190,7 +182,6 @@ public class Database {
         }
 
         public void onUpgrade(SQLiteDatabase sdb, int paramInt1, int paramInt2){
-            Log.w("Database", "Upgrading database from version " + paramInt1 + " to " + paramInt2 + ", which will destroy old data");
             sdb.execSQL("DROP TABLE IF EXSISTS " + DATABASE_TABLE_COMPANY);
             sdb.execSQL("DROP TABLE IF EXSISTS " + DATABASE_TABLE_PARTNUMBERS);
             sdb.execSQL("DROP TABLE IF EXSISTS " + DATABASE_TABLE_SYMPTOMS);

@@ -11,6 +11,8 @@
     <string name="err_email">Enter a Vaild Email Address</string>
     <string name="err_password">Enter a Password</string>
     <string name="err_name">Enter a Valid Name</string>
+    <string name="err_subject">Enter a Suggestion</string>
+    <string name="err_feedback">Enter a Feedback</string>
     <string name="signup">SIGN UP</string>
     <string name="signin">SIGN IN</string>
     <string name="already_registered">Already Registered</string>
@@ -44,23 +46,44 @@
     <string name="menu_logout">Logout</string>
     <string name="menu_exit">Exit</string>
     <string name="name">Full Name</string>
+    <string name="feedback_name">Full Nume</string>
+    <string name="feedback_suggestion">Suggestion</string>
+    <string name="feedback">Enter Your Feedback</string>
+    <string name="feedback_submit">Submit Feedback</string>
     <string name="gpts_email">godpower@godpowerturbo.com</string>
+    <string name="login">false</string>
     <string name="search_part_numbers">Search Part Numbers</string>
-    <string name="textCaution">*The company shall not be responsible for any damage or loss to your vehicle or turbocharger all given Turbocharger Troubleshooting &amp; symptoms guide for educational &amp; information purpose only, kindly refer to vehicle service manual or vehicle authorized dealer befre taking any final decision.</string>
+    <string name="faq"><![CDATA[
+<html><body style=\"text-align:justify;background:#fff;opacity:ff;color:grey;text-shadow:0.5px 0.5px 0.5px #000000;font-size:100%;\">
+<p>1.   How to search part number?<br>
+<strong>Ans:</strong>  Search part numbers in search column and get results, if you can\’t get any results kindly mail us your enquiry, we will check in our data base.</p>
+<p>2.   How to use  trouble failure symptoms guide?<br>
+<strong>Ans:</strong>  Trouble Failure symptoms is described in 12 divisions, and every division is explained with potential causes with their solutions. Vehicle / Engine Diagnostic checks, Turbocharger condition and Effects, Recommended Action.</p>
+<p>3.   Details of upcoming Events?<br>
+<strong>Ans:</strong>  You will get updates from God Power turbo system about recent updates and upcoming event and venue details.</p>
+<p>4.	What about New Launch?
+<strong>Ans:</strong>  You will get the details about new launch from God Power. Latest types of turbochargers and their core Assembly updates.</p>
+<p>5.	I want to give suggestions. Can i?<br>
+<strong>Ans:</strong>  Yes, we are open and invite our users to give suggestions and help us to make this app Awesome!   kindly mail us at email: <a href="mailto:godpower@godpowerturbo.com">godpower@godpowerturbo.com</a> we will glad to receive suggestion from you.</p>
+<p>6.	Can\’t find what you need?<br>
+<strong>Ans:</strong> Kindly mail us the details of your requirements, we will feel happy to receive the suggestions from you and make this app more useful.</p>
+<p><strong>Note: The <quote>GOD POWER</quote> shall not be responsible for any loss or damage to your vehicle or turbocharger all given Turbocharger Troubleshooting &amp; symptoms guide for educational &amp; information purpose only, kindly refer to vehicle service manual or vehicle authorized dealer for taking any final decision.</strong></p>
+</body></html>]]></string>
+    <string name="textCaution">*Turbocharger failure symptoms guide for educational &amp; informational purposes only. Kindly refer to vehicle service manual before taking any final decision. We will not be responsible for any loss or damage.</string>
     <string name="aboutText"><![CDATA[
 <p><b>God Power Turbo Systems</b><br/>
-<i>Version 1.0 Android</i></p>
-<p>In Year 2000  <b><quote>GOD POWER TURBO SYSTEMS</quote></b> was founded by the Directors of company, God Power own strong technical background with 14 years experience in Turbocharger Manufacturing Business. God Power is one of the recognized firms extremely indulged in manufacturing. We always here to use advanced technology for manufacturing of good quality of our product. Our offered products are broadly admired by our customers for reliable performance, OEM quality and reasonable prices. These offered products are made using the best quality raw material.</p>
+<i>Version 2.0 Android</i></p>
+<p>In Year 2000  <b>\"GOD POWER TURBO SYSTEMS\"</b> was founded by the Directors of the company, God Power owns strong technical background with 15 years experience in Turbocharger Manufacturing Business. God Power is one of the most recognized firms extremely indulged in manufacturing. We are always here to use advanced technology for manufacturing of good quality of our product. Our offered products are broadly admired by our customers for reliable performance. We supply OEM quality products at reasonable prices. Our products are made using the best quality raw material. </p>
 
-<p>Furthermore, in order to supply the finest quality products, these products are inspected on dissimilar quality parameters using the sophisticated testing tools. Moreover, our company has hired skillful and assiduous experts for inspection of goods before delivery to customers.</p>
+<p>Furthermore, in order to supply the finest quality products, these products are inspected on dissimilar quality parameters using sophisticated testing tools. Moreover, our company has hired skillful and assiduous experts for inspection of goods before delivery to our customers.</p>
 
-<p>Currently God Power equipped with latest dynamic core balancing machine check and test balance speed up 300000 Rpm/min of turbocharger core assembly before delivery to customers. The company produces a verity of models covering Indian market turbochargers and International turbochargers models also.</p>
+<p>Currently God Power is equipped with latest dynamic core balancing machine for checking, testing and balancing at a speed of 300000 Rpm of turbocharger core assembly before delivery to customers. Our company produces a verity of models covering Indian market turbochargers and also for International markets.</p>
 
-<p>God power can supply more than 5000 types of turbocharger models and 20000+ parts numbers always. God Power also provides customized product according to every customer\’s special needs.</p>
+<p>God power has the capacity to produce more than 5000 types of turbocharger models and 20000+ part numbers at any given time. God Power also provides customized products according to our customer’s special needs.</p>
 
-<p>God Power mainly produces turbocharger and core assemblies for Passenger cars, SUV\’s, Trucks, Bus\’s, Generators, Earthmovers, Marines and Machines etc</p>
+<p>God Power mainly produces turbocharger and core assemblies for Passenger cars, SUV’s, Trucks, Buses, Generators, Earthmovers, Marines and Machines etc</p>
 
-<p>God Power Turbo Systems are the leading manufacturing & supplying company of turbochargers and their parts, Exports to North American, Asian, Africa, Brazil, European and Russian Country widely.</p> <br/>
+<p>God Power Turbo Systems are also the leading manufacturing &amp; supplying company for turbochargers and their child parts. We also indulge ourselves in Exports to North America, Asia, Africa, Brazil, European and Russian Countries widely.</p> <br/>
 <p>
       Our Advantages<br/>
 •	High Quality<br/>
@@ -72,20 +95,9 @@
 •	Free Consultation<br/>
 •   Trust Winning Service<br/>
 •	Reasonable Price<br/>
-•	Satisfaction Guaranteed</p>
-
-
-GENUINE REPLACEMENT PARTS<br/>
-
-<p><b>&copy; GOD POWER TURBO SYSTEMS. ALL RIGHTS RESERVED</b></p>
-</p>]]></string>
-    <string name="trouble1"><![CDATA[<font color="red">No.1 Potential causes</font><br>
-<font color="red">A. Potential causes</font><br/>
-Air pipe leakage<br/>
-<font color="red">B. Vehicle / Engine Diagnostic checks</font><br/>
-Check air supply line leakage<br/>
-<font color="red">C. Turbocharger condition and Effects</font><br/>
-Overspeed burst compresore wheel, small dent on rear of compressore wheel<br/>
-<font color="red">D. Recommended Action</font><br>
-Replace or repair leakage from air pipe]]></string>
+•	Satisfaction Guaranteed<br/>
+<br/>
+      Our Vision<br/>
+•	Our commitment is your success<br/>
+•   Everything we build, we build on trust<br/></p>]]></string>
 </resources>

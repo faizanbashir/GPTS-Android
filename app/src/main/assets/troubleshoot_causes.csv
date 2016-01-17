@@ -17,18 +17,18 @@
 17;Damaged Compressor Wheel;boost control malfunction - VNT;40
 18;Damaged Compressor Wheel;Boost control malfunction- Engine management system;41
 19;Damaged Compressor Wheel;Turbocharger flanges, clamp bolts loose;42
-20;Excessive oil at turbine end side;Excessive Engine pre-oil;15
-21;Excessive oil at turbine end side;Restricted drain line;16
-22;Excessive oil at turbine end side;Plugged Crankcase Breather;20
-23;Excessive oil at turbine end side;Turbocharger seal leakage;23
-24;Excessive oil at turbine end side;Restricted oil feed line;24
-25;Excessive oil at turbine end side;Excessive Engine idle;27
-26;Excessive oil at turbine end side;Coked or sludge center housing;28
-27;Excessive oil at turbine end side;Excessive carbon built-up behind turbine wheel;33
-28;Excessive oil at turbine end side;Foreign object in exhaust system (from engine like broken piston ring valve sheet , melted piston material) etc;36
-29;Excessive oil at turbine end side;oil filter plugged;37
-30;Excessive oil at turbine end side;Worn journal bearing;38
-31;Excessive oil at turbine end side;Turbocharger flanges, clamp bolts loose;42
+20;Excessive Oil at turbine end side;Excessive Engine pre-oil;15
+21;Excessive Oil at turbine end side;Restricted drain line;16
+22;Excessive Oil at turbine end side;Plugged Crankcase Breather;20
+23;Excessive Oil at turbine end side;Turbocharger seal leakage;23
+24;Excessive Oil at turbine end side;Restricted oil feed line;24
+25;Excessive Oil at turbine end side;Excessive Engine idle;27
+26;Excessive Oil at turbine end side;Coked or sludge center housing;28
+27;Excessive Oil at turbine end side;Excessive carbon built-up behind turbine wheel;33
+28;Excessive Oil at turbine end side;Foreign object in exhaust system (from engine like broken piston ring valve sheet , melted piston material) etc;36
+29;Excessive Oil at turbine end side;oil filter plugged;37
+30;Excessive Oil at turbine end side;Worn journal bearing;38
+31;Excessive Oil at turbine end side;Turbocharger flanges, clamp bolts loose;42
 32;Excessive engine oil consumption;Restricted drain line;16
 33;Excessive engine oil consumption;Plugged Crankcase Breather;20
 34;Excessive engine oil consumption;Turbocharger seal leakage;23
@@ -92,26 +92,26 @@
 92;Excessive shaft assembly play;boost control malfunction - VNT;40
 93;Excessive shaft assembly play;Boost control malfunction- Engine management system;41
 94;Excessive shaft assembly play;Turbocharger flanges, clamp bolts loose;42
-95;Drag , bind or bend in shaft assembly;Worn or damaged injectors;6
-96;Drag , bind or bend in shaft assembly;Valve timing;7
-97;Drag , bind or bend in shaft assembly;Oil leakage from feed line;10
-98;Drag , bind or bend in shaft assembly;Oil supply delay at engine start-up;11
-99;Drag , bind or bend in shaft assembly;Insufficient lubrication;12
-100;Drag , bind or bend in shaft assembly;Lubricating oil contaminated with dirt or sludge;13
-101;Drag , bind or bend in shaft assembly;Low quality oil (un branded) oil used;14
-102;Drag , bind or bend in shaft assembly;Air cleaner Element missing, leaking or loose connections to turbo;21
-103;Drag , bind or bend in shaft assembly;Restricted oil feed line;24
-104;Drag , bind or bend in shaft assembly;Coked or sludge center housing;28
-105;Drag , bind or bend in shaft assembly;Excessive carbon built-up behind turbine wheel;33
-106;Drag , bind or bend in shaft assembly;Foreign object between air cleaner and turbocharger;34
-107;Drag , bind or bend in shaft assembly;Excessive dirt built-up on compressor housing;35
-108;Drag , bind or bend in shaft assembly;Foreign object in exhaust system (from engine like broken piston ring valve sheet , melted piston material) etc;36
-109;Drag , bind or bend in shaft assembly;oil filter plugged;37
-110;Drag , bind or bend in shaft assembly;Worn journal bearing;38
-111;Drag , bind or bend in shaft assembly;Boost control malfunction-waste gate;39
-112;Drag , bind or bend in shaft assembly;boost control malfunction - VNT;40
-113;Drag , bind or bend in shaft assembly;Boost control malfunction- Engine management system;41
-114;Drag , bind or bend in shaft assembly;Turbocharger flanges, clamp bolts loose;42
+95;Drag, bind or bend in shaft assembly;Worn or damaged injectors;6
+96;Drag, bind or bend in shaft assembly;Valve timing;7
+97;Drag, bind or bend in shaft assembly;Oil leakage from feed line;10
+98;Drag, bind or bend in shaft assembly;Oil supply delay at engine start-up;11
+99;Drag, bind or bend in shaft assembly;Insufficient lubrication;12
+100;Drag, bind or bend in shaft assembly;Lubricating oil contaminated with dirt or sludge;13
+101;Drag, bind or bend in shaft assembly;Low quality oil (un branded) oil used;14
+102;Drag, bind or bend in shaft assembly;Air cleaner Element missing, leaking or loose connections to turbo;21
+103;Drag, bind or bend in shaft assembly;Restricted oil feed line;24
+104;Drag, bind or bend in shaft assembly;Coked or sludge center housing;28
+105;Drag, bind or bend in shaft assembly;Excessive carbon built-up behind turbine wheel;33
+106;Drag, bind or bend in shaft assembly;Foreign object between air cleaner and turbocharger;34
+107;Drag, bind or bend in shaft assembly;Excessive dirt built-up on compressor housing;35
+108;Drag, bind or bend in shaft assembly;Foreign object in exhaust system (from engine like broken piston ring valve sheet , melted piston material) etc;36
+109;Drag, bind or bend in shaft assembly;oil filter plugged;37
+110;Drag, bind or bend in shaft assembly;Worn journal bearing;38
+111;Drag, bind or bend in shaft assembly;Boost control malfunction-waste gate;39
+112;Drag, bind or bend in shaft assembly;boost control malfunction - VNT;40
+113;Drag, bind or bend in shaft assembly;Boost control malfunction- Engine management system;41
+114;Drag, bind or bend in shaft assembly;Turbocharger flanges, clamp bolts loose;42
 115;Noise;Restricted exhaust systems;3
 116;Noise;Exhaust manifold cracked, burned, gasket loose, blown or missing;19
 117;Noise;Air cleaner Element missing, leaking or loose connections to turbo;21

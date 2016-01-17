@@ -7,50 +7,64 @@ import android.database.DatabaseUtils;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
+import android.support.percent.PercentRelativeLayout;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import api.Connection;
 import api.Database;
 import api.Resource;
 
 
-public class CauseListing extends ActionBarActivity {
+public class CauseListing extends AppCompatActivity {
     private static final String TAG = CauseListing.class.getSimpleName();
     ExpandableListAdapter listAdapter;
     ExpandableListView expListView;
     List<String> listDataHeader;
+    DrawerLayout dw;
+    PercentRelativeLayout rl, l;
+    android.support.v4.app.ActionBarDrawerToggle mDrawerToggle;
+    EditText searchbox;
+    ImageButton nav, nav_home, nav_catalogue, nav_upcomingevents, nav_newlaunch,
+            nav_turbofailure, nav_aboutus, nav_enquiry, nav_faq, nav_feedback,
+            nav_search;
     HashMap<String, List<String>> listDataChild;
+    TextView tv;
     private Context mCtx = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expandable);
-        setUpActionBar();
         // get the listview
         expListView = (ExpandableListView) findViewById(R.id.expandable);
 
         // preparing list data
         //prepareListData();
         String symptom = getIntent().getStringExtra("symptom");
+        Log.e(TAG, "Symptom Input: " + symptom);
         setData(symptom);
 
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 
+        tv = (TextView) findViewById(R.id.textExpandable);
+        tv.setText(symptom);
         // setting list adapter
         expListView.setAdapter(listAdapter);
 
@@ -72,9 +86,7 @@ public class CauseListing extends ActionBarActivity {
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        listDataHeader.get(groupPosition) + " Expanded",
-                        Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -83,9 +95,6 @@ public class CauseListing extends ActionBarActivity {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
-                        listDataHeader.get(groupPosition) + " Collapsed",
-                        Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -96,23 +105,151 @@ public class CauseListing extends ActionBarActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                Toast.makeText(
-                        getApplicationContext(),
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)), Toast.LENGTH_SHORT)
-                        .show();
                 return false;
             }
         });
+        //Drawer Buttons
+        nav_home = (ImageButton) findViewById(R.id.nav_home);
+        nav_catalogue = (ImageButton) findViewById(R.id.nav_catalogue);
+        nav_upcomingevents = (ImageButton) findViewById(R.id.nav_upcomingevents);
+        nav_newlaunch = (ImageButton) findViewById(R.id.nav_newlaunch);
+        nav_turbofailure = (ImageButton) findViewById(R.id.nav_turbofailure);
+        nav_aboutus = (ImageButton) findViewById(R.id.nav_aboutus);
+        nav_enquiry = (ImageButton) findViewById(R.id.nav_enquiry);
+        nav_faq = (ImageButton) findViewById(R.id.nav_faq);
+        nav_feedback = (ImageButton) findViewById(R.id.nav_feedback);
+        nav_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CauseListing.this, Main.class);
+                startActivity(i);
+            }
+        });
+        nav_catalogue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CauseListing.this, CompanyListing.class);
+                startActivity(i);
+            }
+        });
+        nav_upcomingevents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Connection.getConnection(mCtx)){
+                    Intent i = new Intent(CauseListing.this, EventsListing.class);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Check your Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        nav_newlaunch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Connection.getConnection(mCtx)){
+                    Intent i = new Intent(CauseListing.this, HotProductsListing.class);
+                    startActivity(i);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Check your Internet Connection", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        nav_turbofailure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CauseListing.this, Troubleshootlisting.class);
+                startActivity(i);
+            }
+        });
+        nav_aboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CauseListing.this, About.class);
+                startActivity(i);
+            }
+        });
+        nav_enquiry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CauseListing.this, Contact.class);
+                startActivity(i);
+            }
+        });
+        nav_faq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CauseListing.this, Faq.class);
+                startActivity(i);
+            }
+        });
+        nav_feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CauseListing.this, Feedback.class);
+                startActivity(i);
+            }
+        });
+        dw = (DrawerLayout) findViewById(R.id.nav_main);
+        rl = (PercentRelativeLayout) findViewById(R.id.nav_left);
+        pk();
     }
 
-    private void setUpActionBar(){
-        ActionBar ab = getSupportActionBar();
-        ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor(Resource.BACKGROUND_DRAWABLE)));
-        ab.setStackedBackgroundDrawable(new ColorDrawable(Color.parseColor(Resource.STACKED_BACKGROUND)));
-        ab.setDisplayHomeAsUpEnabled(true);
+    private void pk(){
+        ActionBar idk = getSupportActionBar();
+        idk.setDisplayHomeAsUpEnabled(false);
+        idk.setDisplayShowTitleEnabled(false);
+        idk.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        idk.setStackedBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        LayoutInflater mInflater = LayoutInflater.from(this);
+        View mCustomView = mInflater.inflate(R.layout.header, null);
+        idk.setCustomView(mCustomView);
+        idk.setDisplayShowCustomEnabled(true);
+        mDrawerToggle = new android.support.v4.app.ActionBarDrawerToggle(this, dw, R.drawable.option, 0, 0){
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                l.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+                l.setVisibility(View.VISIBLE);
+            }
+        };
+        dw.setDrawerListener(mDrawerToggle);
+        l = (PercentRelativeLayout) mCustomView.findViewById(R.id.linear_search);
+        nav = (ImageButton) mCustomView.findViewById(R.id.nav_menu);
+        nav_search = (ImageButton) mCustomView.findViewById(R.id.search);
+        searchbox = (EditText) mCustomView.findViewById(R.id.query);
+        nav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e(TAG, "NAV MENU CLICK");
+                if(!dw.isDrawerOpen(Gravity.LEFT)){
+                    l.setVisibility(View.INVISIBLE);
+                    dw.openDrawer(rl);
+                }else{
+                    l.setVisibility(View.VISIBLE);
+                    dw.closeDrawer(rl);
+                }
+
+            }
+        });
+        nav_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String query = searchbox.getText().toString();
+                Log.e(TAG, "NAV SEARCH QUERY: " + query);
+                Bundle bd = new Bundle();
+                bd.putString("query", query);
+                Intent i = new Intent(CauseListing.this, PartNumberListing.class);
+                i.putExtras(bd);
+                startActivity(i);
+            }
+        });
     }
 
     /*
@@ -138,7 +275,7 @@ public class CauseListing extends ActionBarActivity {
         top250.add("12 Angry Men");
 
         List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add(Resource.HTML);
+        nowShowing.add("shi");
         //nowShowing.add("Despicable Me 2");
         //nowShowing.add("Turbo");
         //nowShowing.add("Grown Ups 2");
@@ -165,53 +302,34 @@ public class CauseListing extends ActionBarActivity {
             List<String> vexed = new ArrayList<>();
             Database db = new Database(mCtx);
             db.open();
+            Log.e(TAG, "Symptom: " + symptom);
             Cursor c = db.getCauses(symptom);
             c.moveToFirst();
             Log.e(TAG, DatabaseUtils.dumpCursorToString(c));
             int e = 0;
             for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
-                String i = c.getString(c.getColumnIndex("cause"));
+                String i = e+1 + ". " + c.getString(c.getColumnIndex("cause"));
+                Log.e(TAG, "Cause: " + c.getString(c.getColumnIndex("cause")));
                 listDataHeader.add(i);
                 String x = c.getString(c.getColumnIndex("cause_no"));
+                Log.e(TAG, "Cause No: " + x);
                 Cursor d = db.getPotentialCause(x);
                 Log.e(TAG, DatabaseUtils.dumpCursorToString(d));
                 d.moveToFirst();
                 String y = d.getString(d.getColumnIndex("potential_cause"));
+                Log.e(TAG, "Potential Cause: " + y);
                 vexed.add(y);
-                dexter.add(vexed);
-                listDataChild.put(listDataHeader.get(e), dexter.get(e));
+                dexter.add(Arrays.asList(vexed.get(e)));
+                for(int k = 0; k < dexter.size(); k++){
+                    Log.e(TAG, "Data Dexter: " + dexter.get(k));
+                    listDataChild.put(listDataHeader.get(e), dexter.get(k));
+                }
                 e++;
                 Log.e(TAG, "Iteration: " + e);
-                vexed.clear();
             }
             db.close();
         }catch(SQLException e){
             e.printStackTrace();
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_welcome, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                break;
-            case R.id.menu_logout:
-                Intent i = new Intent(CauseListing.this, Logout.class);
-                startActivity(i);
-                break;
-            case R.id.menu_exit:
-                stopService(new Intent(CauseListing.this, MyService.class));
-                android.os.Process.killProcess(Resource.PID);
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 }
