@@ -9,7 +9,6 @@ import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,16 +42,10 @@ public class BlackBoard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blackboard);
-        Log.e(TAG, "onCreate()");
         registerViews();
     }
 
     private void registerViews(){
-        Log.e(TAG, "ID : " + getIntent().getStringExtra("id") +
-                " Title: " + getIntent().getStringExtra("title") +
-                " Description: " + getIntent().getStringExtra("description") +
-                " Image: " + getIntent().getStringExtra("image") +
-                " Loc: " + getIntent().getStringExtra("loc"));
         String id = getIntent().getStringExtra("id");
         String description = getIntent().getStringExtra("description");
         String loc = getIntent().getStringExtra("loc");
@@ -187,7 +180,6 @@ public class BlackBoard extends AppCompatActivity {
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     l.setVisibility(View.INVISIBLE);
                     dw.openDrawer(rl);
@@ -202,7 +194,6 @@ public class BlackBoard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
                 Intent i = new Intent(BlackBoard.this, PartNumberListing.class);

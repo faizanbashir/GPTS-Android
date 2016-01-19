@@ -11,19 +11,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import api.Connection;
-import api.Resource;
 
 public class About extends AppCompatActivity{
 
@@ -43,7 +40,6 @@ public class About extends AppCompatActivity{
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        Log.e(TAG, "onCreate");
         registerViews();
     }
 
@@ -171,7 +167,6 @@ public class About extends AppCompatActivity{
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     l.setVisibility(View.INVISIBLE);
                     dw.openDrawer(rl);
@@ -186,7 +181,6 @@ public class About extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
                 Intent i = new Intent(About.this, PartNumberListing.class);

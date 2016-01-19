@@ -7,7 +7,6 @@
 
     <FrameLayout
         android:id="@+id/content_frame"
-        android:background="@drawable/nav"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -64,7 +63,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_gravity="left"
         android:id="@+id/nav_left"
-        android:background="@drawable/nav"
+        android:background="@drawable/nave"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

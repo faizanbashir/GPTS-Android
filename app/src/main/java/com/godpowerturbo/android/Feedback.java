@@ -1,6 +1,5 @@
 package com.godpowerturbo.android;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,7 +11,6 @@ import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -176,12 +174,12 @@ public class Feedback extends AppCompatActivity {
         String name = ((session.getName() == null || session.getName().isEmpty()) ? et_name.getText().toString() : session.getName());
         String email = ((session.getEmailAddr() == null || session.getEmailAddr().isEmpty()) ? "abc@xyz.com" : session.getEmailAddr() );
         String mobile = ((session.getMobile() == null || session.getMobile().isEmpty()) ? "1234567890" : session.getMobile());
-        String body = "Name: " + name + "\n"
+        String body = "Registered Name: " + name + "\n"
+                + "Name in Feedback: " + et_name.getText().toString() + "\n"
                 + "Email:  " + email + "\n"
                 + "Mobile: " + mobile + "\n"
                 + "Suggestion: " + et_suggestion.getText().toString() + "\n"
                 + "Feedback: " + et_feedback.getText().toString();
-        Log.e(TAG, "Message Body: " + body);
         BackgroundMail mail = new BackgroundMail(Feedback.this);
         mail.setGmailUserName("caregodpower@gmail.com");
         mail.setGmailPassword("Godpower@1234");
@@ -192,9 +190,9 @@ public class Feedback extends AppCompatActivity {
     }
 
     private void setValidation(AwesomeValidation av){
-        av.addValidation(Feedback.this, R.id.editTextName, "^[a-z A-z\\\\s]+", R.string.err_phone);
-        av.addValidation(Feedback.this, R.id.editTextSubject, "^[a-z A-z\\\\s]+", R.string.err_email);
-        av.addValidation(Feedback.this, R.id.editTextMsg, "^[a-z A-z\\\\s]+", R.string.err_name);
+        av.addValidation(Feedback.this, R.id.editTextName, "^[a-z A-z\\\\s]+", R.string.err_name);
+        av.addValidation(Feedback.this, R.id.editTextSubject, "^[a-z A-z 0-9\\\\s]+", R.string.err_subject);
+        av.addValidation(Feedback.this, R.id.editTextMsg, "^[a-z A-z 0-9\\\\s]+", R.string.err_feedback);
     }
 
     private void pk(){
@@ -230,7 +228,6 @@ public class Feedback extends AppCompatActivity {
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     l.setVisibility(View.INVISIBLE);
                     dw.openDrawer(rl);
@@ -245,7 +242,6 @@ public class Feedback extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
                 Intent i = new Intent(Feedback.this, PartNumberListing.class);

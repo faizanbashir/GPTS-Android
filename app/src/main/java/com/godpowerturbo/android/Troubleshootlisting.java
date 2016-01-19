@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +26,6 @@ import java.util.List;
 import api.ActionBarListActivity;
 import api.Connection;
 import api.Database;
-import api.Resource;
 
 public class Troubleshootlisting extends ActionBarListActivity{
     private static final String TAG = Troubleshootlisting.class.getSimpleName();
@@ -46,7 +44,6 @@ public class Troubleshootlisting extends ActionBarListActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listingx);
-        Log.e(TAG, "onCreate");
         mList = (ListView) findViewById(R.id.list);
         tv = (TextView) findViewById(R.id.textListingx);
         tv.setText("Turbo Failure Symptoms");
@@ -60,7 +57,6 @@ public class Troubleshootlisting extends ActionBarListActivity{
             db.open();
             List<String> symptoms = db.getSymptoms();
             List<String> Latest = new ArrayList<>();
-            Log.e(TAG, "DB DATA: " + symptoms.toString());
             String str;
             for(int i = 0; i < symptoms.size(); i++){
                 str = i+1 + ". " + symptoms.get(i);
@@ -81,7 +77,6 @@ public class Troubleshootlisting extends ActionBarListActivity{
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "Position: " + position + " Id: " + id);
                 TextView tv = (TextView) view.findViewById(android.R.id.text1);
                 String symptoms;
                 if(id < 9){
@@ -89,9 +84,7 @@ public class Troubleshootlisting extends ActionBarListActivity{
                 }else{
                     symptoms = tv.getText().toString().substring(4).trim();
                 }
-                Log.e(TAG, "List Item Value: " + symptoms);
                 Bundle bd = new Bundle();
-                Log.e(TAG, "Sending Data Symptom: " + symptoms);
                 bd.putString("symptom", symptoms);
                 Intent i = new Intent(Troubleshootlisting.this, CauseListing.class);
                 i.putExtras(bd);
@@ -217,7 +210,6 @@ public class Troubleshootlisting extends ActionBarListActivity{
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     l.setVisibility(View.INVISIBLE);
                     dw.openDrawer(rl);
@@ -232,7 +224,6 @@ public class Troubleshootlisting extends ActionBarListActivity{
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
                 Intent i = new Intent(Troubleshootlisting.this, PartNumberListing.class);

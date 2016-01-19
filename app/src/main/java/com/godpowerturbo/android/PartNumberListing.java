@@ -10,7 +10,6 @@ import android.os.Vibrator;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +53,6 @@ public class PartNumberListing extends ActionBarListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partnumberlisting);
-        Log.e(TAG, "onCreate");
         vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         mList = (ListView) findViewById(R.id.list);
         //listView();
@@ -62,7 +60,6 @@ public class PartNumberListing extends ActionBarListActivity {
     }
 
     public boolean searchEngine(String src, String what) {
-        Log.e(TAG, "SearchEngine() -> src " + src + ", what: " + what);
         final int length = what.length();
         if (length == 0)
             return true; // Empty string is contained
@@ -98,12 +95,8 @@ public class PartNumberListing extends ActionBarListActivity {
                         for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
                             String str = c.getString(c.getColumnIndex("oemno"));
                             String id = c.getString(c.getColumnIndex("_id"));
-                            Log.e(TAG, "OEMZ: " + str);
-                            Log.e(TAG, "_ID " + id);
                             eureka = searchEngine(str, query);
                             if(eureka) {
-                                Log.e(TAG, "Eureka a match: " + str);
-                                Log.e(TAG, "Eureka a match ID: " + id);
                                 ref.add(id);
                                 similar.add(str);
                             }
@@ -121,7 +114,6 @@ public class PartNumberListing extends ActionBarListActivity {
                     vibrate();
                     et.setError("Enter a Search Query");
                 }
-                Log.e(TAG, "Search Module");
             }
         });
         if(!query.isEmpty()){
@@ -131,11 +123,8 @@ public class PartNumberListing extends ActionBarListActivity {
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "Position: " + position + " Id: " + id);
                 TextView tv = (TextView) view.findViewById(android.R.id.text1);
                 String part = ref.get(position);
-                Log.e(TAG, "Sending Id: " + ref.get(position));
-                Log.e(TAG, "List Item Value: " + part);
                 Bundle bd = new Bundle();
                 bd.putString("_id", part);
                 Intent i = new Intent(PartNumberListing.this, PartNumber.class);
@@ -268,7 +257,6 @@ public class PartNumberListing extends ActionBarListActivity {
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     dw.openDrawer(rl);
                 }else{
@@ -281,7 +269,6 @@ public class PartNumberListing extends ActionBarListActivity {
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
                 Intent i = new Intent(PartNumberListing.this, PartNumberListing.class);

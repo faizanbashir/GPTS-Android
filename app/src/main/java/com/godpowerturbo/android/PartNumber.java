@@ -3,7 +3,6 @@ package com.godpowerturbo.android;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +23,6 @@ import java.sql.SQLException;
 
 import api.Connection;
 import api.Database;
-import api.Resource;
 
 public class PartNumber extends AppCompatActivity{
     private static final String TAG = PartNumber.class.getSimpleName();
@@ -46,7 +43,6 @@ public class PartNumber extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_partnumber);
-        Log.e(TAG, "onCreate");
         registerViews();
     }
 
@@ -182,7 +178,6 @@ public class PartNumber extends AppCompatActivity{
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     l.setVisibility(View.INVISIBLE);
                     dw.openDrawer(rl);
@@ -197,7 +192,6 @@ public class PartNumber extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
                 Intent i = new Intent(PartNumber.this, PartNumberListing.class);
@@ -210,12 +204,10 @@ public class PartNumber extends AppCompatActivity{
     private void displayImage(){
         TAG_PARTNUMBER = getIntent().getStringExtra("partnumber");
         TAG_ID = getIntent().getStringExtra("_id");
-        Log.e(TAG, "PartNumber: " + TAG_PARTNUMBER);
         Database db = new Database(mCtx);
         try{
             db.open();
             Cursor c = db.getDetails(TAG_ID);
-            Log.e(TAG, "List Data: " + DatabaseUtils.dumpCursorToString(c));
             setData(c);
             db.close();
         }catch(SQLException e){
@@ -225,7 +217,6 @@ public class PartNumber extends AppCompatActivity{
 
     private void setData(Cursor c){
         c.moveToFirst();
-        Log.e(TAG, "Cursor Data 0th: " + c.getString(0));
         String gpno  = c.getString(c.getColumnIndex("gpno"));
         String company = c.getString(c.getColumnIndex("company"));
         String application = c.getString(c.getColumnIndex("application"));

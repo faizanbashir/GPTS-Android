@@ -5,14 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
-import java.util.Arrays;
 
 import api.Database;
 import api.Resource;
@@ -37,12 +35,9 @@ public class Welcome extends Activity {
             public void run() {
                 try{
                     if(!session.isFirstRun()){
-                        Log.e(TAG, "Sleeping: Zzzzzzzzzzzzzzzzzzzzzzzzz");
                         Thread.sleep(timer);
                     }
                     setUpDB();
-                    Log.e(TAG, "USER INFO");
-                    Log.e(TAG, "Login Status: " + session.isLoggedIn());
                     if(session.isLoggedIn()){
                         Intent i = new Intent(Welcome.this, Main.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +27,6 @@ import java.util.List;
 import api.ActionBarListActivity;
 import api.Connection;
 import api.Database;
-import api.Resource;
 
 public class PartListing extends ActionBarListActivity {
     private static final String TAG = PartListing.class.getSimpleName();
@@ -63,8 +61,6 @@ public class PartListing extends ActionBarListActivity {
             Cursor c = db.getPartnumbers(company);
             List<String> results = new ArrayList<>();
             for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
-                Log.e(TAG, "Loop data: " + c.getString(c.getColumnIndex("oemno")));
-                Log.e(TAG, "Loop data: " + c.getString(c.getColumnIndex("_id")));
                 a.add(c.getString(c.getColumnIndex("_id")));
                 results.add(c.getString(c.getColumnIndex("oemno")));
             }
@@ -82,11 +78,8 @@ public class PartListing extends ActionBarListActivity {
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.e(TAG, "Position: " + position + " Id: " + id);
                 TextView tv = (TextView) view.findViewById(android.R.id.text1);
                 String part = tv.getText().toString();
-                Log.e(TAG, "List Item Value: " + part);
-                Log.e(TAG, "Id: " + a.get(position));
                 Bundle bd = new Bundle();
                 bd.putString("_id", a.get(position));
                 bd.putString("partnumber", part);
@@ -214,7 +207,6 @@ public class PartListing extends ActionBarListActivity {
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     l.setVisibility(View.INVISIBLE);
                     dw.openDrawer(rl);
@@ -229,7 +221,6 @@ public class PartListing extends ActionBarListActivity {
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
                 Intent i = new Intent(PartListing.this, PartNumberListing.class);

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +25,6 @@ import java.util.List;
 import api.ActionBarListActivity;
 import api.Connection;
 import api.Database;
-import api.Resource;
 
 public class CompanyListing extends ActionBarListActivity {
     private static final String TAG = CompanyListing.class.getSimpleName();
@@ -38,7 +36,7 @@ public class CompanyListing extends ActionBarListActivity {
     ImageButton nav, nav_home, nav_catalogue, nav_upcomingevents, nav_newlaunch,
             nav_turbofailure, nav_aboutus, nav_enquiry, nav_faq, nav_feedback,
             nav_search;
-    ImageButton about, partNumber, turbofailure, contact, faq, events, hotProducts, feedback;
+    ImageButton about, contact, faq, feedback;
     private Context mCtx = this;
     TextView tv;
 
@@ -46,7 +44,6 @@ public class CompanyListing extends ActionBarListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listing);
-        Log.e(TAG, "onCreate");
         mList = (ListView) findViewById(R.id.list);
         tv = (TextView) findViewById(R.id.textListing);
         tv.setText("Application Type");
@@ -59,7 +56,6 @@ public class CompanyListing extends ActionBarListActivity {
         try{
             db.open();
             List<String> company = db.getCompany();
-            Log.e(TAG, "DB DATA: " + company.toString());
             ArrayAdapter<String> arrayAdapter= new ArrayAdapter<>(CompanyListing.this,
                     android.R.layout.simple_list_item_1, android.R.id.text1, company);
             mList.setAdapter(arrayAdapter);
@@ -73,10 +69,8 @@ public class CompanyListing extends ActionBarListActivity {
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "Position: " + position + " Id: " + id);
                 TextView tv = (TextView) view.findViewById(android.R.id.text1);
                 String company = tv.getText().toString();
-                Log.e(TAG, "List Item Value: " + company);
                 Bundle bd = new Bundle();
                 bd.putString("company", company);
                 Intent i = new Intent(CompanyListing.this, PartListing.class);
@@ -208,7 +202,6 @@ public class CompanyListing extends ActionBarListActivity {
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     l.setVisibility(View.INVISIBLE);
                     dw.openDrawer(rl);
@@ -223,7 +216,6 @@ public class CompanyListing extends ActionBarListActivity {
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
                 Intent i = new Intent(CompanyListing.this, PartNumberListing.class);

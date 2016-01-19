@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,7 +60,6 @@ public class HotProductsListing extends ActionBarListActivity {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listing);
-        Log.e(TAG, "onCreate");
         registerViews();
         listView();
     }
@@ -71,7 +69,6 @@ public class HotProductsListing extends ActionBarListActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "Position: " + position + " Id: " + id);
                 String tid = ((TextView) view.findViewById(R.id.id)).getText().toString();
                 String ttitle = ((TextView) view.findViewById(R.id.title)).getText().toString();
                 String tdescription = ((TextView) view.findViewById(R.id.description)).getText().toString();
@@ -209,7 +206,6 @@ public class HotProductsListing extends ActionBarListActivity {
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     l.setVisibility(View.INVISIBLE);
                     dw.openDrawer(rl);
@@ -224,7 +220,6 @@ public class HotProductsListing extends ActionBarListActivity {
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
                 Intent i = new Intent(HotProductsListing.this, PartNumberListing.class);
@@ -235,7 +230,6 @@ public class HotProductsListing extends ActionBarListActivity {
     }
 
     private void listView(){
-        Log.e(TAG, "listView()");
         adapter = new CustomListAdapter(HotProductsListing.this, dataList);
         dialog = new ProgressDialog(HotProductsListing.this);
         dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -252,7 +246,6 @@ public class HotProductsListing extends ActionBarListActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.e(TAG, response.toString());
                         hideDialog();
                         try {
                             JSONArray obj = response.getJSONArray("product_parts");

@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
@@ -25,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.mikepenz.materialdrawer.util.KeyboardUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,7 +52,6 @@ public class Register extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.e(TAG, "onCreate()");
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -82,8 +81,8 @@ public class Register extends Activity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                KeyboardUtil.hideKeyboard(Register.this);
                 boolean isValid = av.validate();
-                Log.e(TAG, "av.validate(): " + isValid);
                 Connection conn = new Connection(context);
                 boolean isConnected = conn.getConnection();
                 if(isValid){
@@ -109,7 +108,6 @@ public class Register extends Activity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e(TAG, "Request Response: " + response);
                         hidedialog();
                         try{
                             JSONObject jObj = new JSONObject(response);
@@ -132,7 +130,6 @@ public class Register extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 hidedialog();
-                Log.e(TAG, "Error Response: " + error.toString());
                 Toast.makeText(getApplicationContext(), "Please try again", Toast.LENGTH_SHORT).show();
                 vibrate();
             }
@@ -145,7 +142,6 @@ public class Register extends Activity {
                 params.put(TAG_MOBILE, phone.getText().toString());
                 params.put(TAG_EMAIL, email.getText().toString());
                 params.put(TAG_IP, IMEI);
-                Log.e(TAG, "Sending data :" + params.values());
                 return params;
             }
         };

@@ -24,6 +24,7 @@ public class Session {
     private static final String KEY_FIRST_RUN = "firstRun";
     private static final String ID = "id";
     private static final String ACTIVE_STATUS = "status";
+    private static final String LOGGED_IN_FROM_LOGIN = "firstLogin";
 
 
     public Session(Context context) {
@@ -37,6 +38,15 @@ public class Session {
         editor.putBoolean(KEY_IS_LOGGED_IN, isLoggedIn);
         editor.commit();
         Log.d(TAG, "User login session modified!");
+    }
+
+    public void firstDamn(boolean isLogin){
+        editor.putBoolean(LOGGED_IN_FROM_LOGIN, isLogin);
+        editor.commit();
+    }
+
+    public boolean getFirstDamn(){
+        return pref.getBoolean(LOGGED_IN_FROM_LOGIN, false);
     }
 
     public void firstRun(){

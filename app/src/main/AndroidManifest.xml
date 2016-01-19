@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.godpowerturbo.android"
     android:versionCode="2"
-    android:versionName="2.0">
+    android:versionName="2.0.1">
     <uses-sdk tools:overrideLibrary="com.creativityapps.gmailbackgroundlibrary"
         android:minSdkVersion="14" android:targetSdkVersion="21"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>

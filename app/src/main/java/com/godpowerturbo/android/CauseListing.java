@@ -3,7 +3,6 @@ package com.godpowerturbo.android;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +27,6 @@ import java.util.List;
 
 import api.Connection;
 import api.Database;
-import api.Resource;
 
 
 public class CauseListing extends AppCompatActivity {
@@ -58,7 +55,6 @@ public class CauseListing extends AppCompatActivity {
         // preparing list data
         //prepareListData();
         String symptom = getIntent().getStringExtra("symptom");
-        Log.e(TAG, "Symptom Input: " + symptom);
         setData(symptom);
 
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
@@ -227,7 +223,6 @@ public class CauseListing extends AppCompatActivity {
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     l.setVisibility(View.INVISIBLE);
                     dw.openDrawer(rl);
@@ -242,7 +237,6 @@ public class CauseListing extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
                 Bundle bd = new Bundle();
                 bd.putString("query", query);
                 Intent i = new Intent(CauseListing.this, PartNumberListing.class);
@@ -250,48 +244,6 @@ public class CauseListing extends AppCompatActivity {
                 startActivity(i);
             }
         });
-    }
-
-    /*
-     * Preparing the list data
-     */
-    private void prepareListData() {
-        //listDataHeader = new ArrayList<String>();
-        //listDataChild = new HashMap<String, String>();
-
-        // Adding child data
-        listDataHeader.add("Top 250");
-        listDataHeader.add("Now Showing");
-        listDataHeader.add("Coming Soon..");
-
-        // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("<b style=\"color:red;\">The Shawshank Redemption<b>");
-        top250.add("The Godfather");
-        top250.add("The Godfather: Part II");
-        top250.add("Pulp Fiction");
-        top250.add("The Good, the Bad and the Ugly");
-        top250.add("The Dark Knight");
-        top250.add("12 Angry Men");
-
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("shi");
-        //nowShowing.add("Despicable Me 2");
-        //nowShowing.add("Turbo");
-        //nowShowing.add("Grown Ups 2");
-        //nowShowing.add("Red 2");
-        nowShowing.add("The Wolverine");
-
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-        comingSoon.add("The Smurfs 2");
-        comingSoon.add("The Spectacular Now");
-        comingSoon.add("The Canyons");
-        comingSoon.add("Europa Report");
-
-        //listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        //listDataChild.put(listDataHeader.get(1), nowShowing);
-        //listDataChild.put(listDataHeader.get(2), comingSoon);
     }
 
     private void setData(String symptom){
@@ -302,30 +254,22 @@ public class CauseListing extends AppCompatActivity {
             List<String> vexed = new ArrayList<>();
             Database db = new Database(mCtx);
             db.open();
-            Log.e(TAG, "Symptom: " + symptom);
             Cursor c = db.getCauses(symptom);
             c.moveToFirst();
-            Log.e(TAG, DatabaseUtils.dumpCursorToString(c));
             int e = 0;
             for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
                 String i = e+1 + ". " + c.getString(c.getColumnIndex("cause"));
-                Log.e(TAG, "Cause: " + c.getString(c.getColumnIndex("cause")));
                 listDataHeader.add(i);
                 String x = c.getString(c.getColumnIndex("cause_no"));
-                Log.e(TAG, "Cause No: " + x);
                 Cursor d = db.getPotentialCause(x);
-                Log.e(TAG, DatabaseUtils.dumpCursorToString(d));
                 d.moveToFirst();
                 String y = d.getString(d.getColumnIndex("potential_cause"));
-                Log.e(TAG, "Potential Cause: " + y);
                 vexed.add(y);
                 dexter.add(Arrays.asList(vexed.get(e)));
                 for(int k = 0; k < dexter.size(); k++){
-                    Log.e(TAG, "Data Dexter: " + dexter.get(k));
                     listDataChild.put(listDataHeader.get(e), dexter.get(k));
                 }
                 e++;
-                Log.e(TAG, "Iteration: " + e);
             }
             db.close();
         }catch(SQLException e){

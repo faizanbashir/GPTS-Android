@@ -39,20 +39,20 @@ public class MyService extends Service {
 
     @Override
     public void onCreate() {
-        Log.e(TAG, "onCreate");
         session = new Session(mCtx);
         Connection conn = new Connection(mCtx);
         boolean isConnected = conn.getConnection();
         if(isConnected){
-            if(getString(R.string.login).equals("false"))
+            if(!session.getFirstDamn())
                 validate();
+            else
+                session.firstDamn(false);
         }
         super.onCreate();
     }
 
     @Override
     public void onDestroy() {
-        Log.e(TAG, "onDestroy");
         logout();
         super.onDestroy();
     }
@@ -62,7 +62,7 @@ public class MyService extends Service {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e(TAG, "Login Response: " + response);
+                        Log.d(TAG, "Login Response: " + response);
                         try{
                             JSONObject jObj = new JSONObject(response);
                             String status = jObj.getString("status");
@@ -71,20 +71,21 @@ public class MyService extends Service {
                                 JSONObject jUser = new JSONObject(user);
                                 String activeStatus = jUser.getString("status");
                                 if(activeStatus.equals("Active")){
-                                    Log.e(TAG, "User statuts: " + activeStatus);
+                                    Log.d(TAG, "User statuts: " + activeStatus);
                                 }else if(activeStatus.equals("Inactive")){
                                     session.logOut();
-                                    Toast.makeText(getApplicationContext(), "Your LOG ID has been block listed!",
+                                    Toast.makeText(getApplicationContext(), "Your LOG ID has been black listed!",
                                             Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(MyService.this, Login.class);
-                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    Intent i = new Intent();
+                                    i.setClass(mCtx, Login.class);
+                                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                     startActivity(i);
                                 }else{
-                                    Log.e(TAG, "User Status" + activeStatus);
+                                    Log.d(TAG, "User Status" + activeStatus);
                                 }
                                 //Start Activity
                             }else{
-                                Log.e(TAG, "Status: " + status);
+                                Log.d(TAG, "Status: " + status);
                             }
                         }catch(JSONException e){
                             e.printStackTrace();
@@ -93,7 +94,7 @@ public class MyService extends Service {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Error Response: " + error.toString());
+                Log.d(TAG, "Error Response: " + error.toString());
             }
         }){
             @Override
@@ -102,7 +103,7 @@ public class MyService extends Service {
                 String IMEI = getIMEI();
                 params.put(Resource.TAG_MOBILE, session.getMobile());
                 params.put(Resource.TAG_IP, IMEI);
-                Log.e(TAG, "Sending data: " + params.values());
+                Log.d(TAG, "Sending data: " + params.values());
                 return params;
             }
         };
@@ -120,12 +121,12 @@ public class MyService extends Service {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Log.e(TAG, "onDestroy: " + response);
+                            Log.d(TAG, "onDestroy: " + response);
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e(TAG, "onDestroy Error: " + error.toString());
+                    Log.d(TAG, "onDestroy Error: " + error.toString());
                 }
             }
             ){
@@ -135,7 +136,7 @@ public class MyService extends Service {
                     Session session = new Session(mCtx);
                     String LOG_ID = session.getLogId();
                     params.put("log_id", LOG_ID);
-                    Log.e(TAG, "Sending Data: " + params.values());
+                    Log.d(TAG, "Sending Data: " + params.values());
                     return params;
                 }
             };
@@ -144,7 +145,7 @@ public class MyService extends Service {
             strReq.setRetryPolicy(policy);
             MySingleton.getInstance(this).addToRequestQueue(strReq);
         }else{
-            Log.e(TAG, "onDestroy: Not Connected");
+            Log.d(TAG, "onDestroy: Not Connected");
         }
     }
 
@@ -154,4 +155,3 @@ public class MyService extends Service {
     }
 
 }
-

@@ -9,7 +9,6 @@ import android.support.percent.PercentRelativeLayout;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +58,6 @@ public class Logout extends AppCompatActivity {
         }else{
             str = "X";
         }
-        Log.e(TAG, "NAME: " + str + " EMAIL: " + session.getEmailAddr());
         txtName.setText(str);
         txtEmail.setText(session.getEmailAddr());
 
@@ -203,7 +201,6 @@ public class Logout extends AppCompatActivity {
         nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e(TAG, "NAV MENU CLICK");
                 if(!dw.isDrawerOpen(Gravity.LEFT)){
                     l.setVisibility(View.INVISIBLE);
                     dw.openDrawer(rl);
@@ -218,7 +215,6 @@ public class Logout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String query = searchbox.getText().toString();
-                Log.e(TAG, "NAV SEARCH QUERY: " + query);
             }
         });
     }
